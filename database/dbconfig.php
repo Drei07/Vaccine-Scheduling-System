@@ -3,7 +3,7 @@ class Database
 {
      
     private $host = "localhost";
-    private $db_name = "rms";
+    private $db_name = "vaccine_ms";
     private $username = "root";
     private $password = "";
     public $conn;

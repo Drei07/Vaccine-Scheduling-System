@@ -26,7 +26,7 @@ if(isset($_POST['btn-forgot-password']))
        <br /><br />
        Click Following Link To Reset Your Password 
        <br /><br />
-       <a href='https://localhost/RMS/dashboard/superadmin/authentication/superadmin-reset-password?id=$id&code=$code'>click here to reset your password</a>
+       <a href='https://localhost/Vaccine-Scheduling-System/dashboard/superadmin/authentication/superadmin-reset-password?id=$id&code=$code'>click here to reset your password</a>
        <br /><br />
        thank you :)
        ";
@@ -35,7 +35,7 @@ if(isset($_POST['btn-forgot-password']))
   $superadmin->send_mail($email,$message,$subject,$smtp_email,$smtp_password,$system_name);
   
   $_SESSION['status_title'] = "Success !";
-  $_SESSION['status'] = "We've sent the password reset link to $email, kindly check your spam folder and 'Report not spam' to click the link.";
+  $_SESSION['status'] = "We've sent the password reset link to $email.";
   $_SESSION['status_code'] = "success";
   header('Location: ../../../public/superadmin/signin');
  }
