@@ -33,20 +33,27 @@ class USER
   return $stmt;
  }
  
- public function register($employeeId,$position,$first_name,$middle_name,$last_name,$phone_number,$email,$upass,$tokencode,$uniqueID)
+ public function register($FName,$MName,$LName,$Sex,$BirthDate,$Age,$CStatus,$Religion,$Province,$City,$Barangay,$Street,$PNumber,$email,$upass,$tokencode,$uniqueID)
  {
   try
   {       
    $password = md5($upass);
-   $stmt = $this->conn->prepare("INSERT INTO user(employeeId,userPosition,userFirst_Name,userMiddle_Name,userLast_Name,userPhone_Number,userEmail,userPassword,tokencode,uniqueID) 
-                                        VALUES(:employeeId,:userPosition,:userFirst_Name,:userMiddle_Name,:userLast_Name,:userPhone_Number,:userEmail,:userPassword,:tokencode,:uniqueID)");
+   $stmt = $this->conn->prepare("INSERT INTO user(userFirst_Name,userMiddle_Name,userLast_Name, userSex, userBirthDate, userAge, userCivilStatus, userReligion, userProvince, userCity, userBarangay, userStreet, userPhone_Number,userEmail,userPassword,tokencode,uniqueID) 
+                                        VALUES(:userFirst_Name,:userMiddle_Name,:userLast_Name, :userSex, :userBirthDate, :userAge, :userCivilStatus, :userReligion, :userProvince, :userCity, :userBarangay, :userStreet, :userPhone_Number,:userEmail,:userPassword,:tokencode,:uniqueID)");
    
-   $stmt->bindparam(":employeeId",$employeeId);
-   $stmt->bindparam(":userPosition",$position);
-   $stmt->bindparam(":userFirst_Name",$first_name);
-   $stmt->bindparam(":userMiddle_Name",$middle_name);
-   $stmt->bindparam(":userLast_Name",$last_name);
-   $stmt->bindparam(":userPhone_Number",$phone_number);
+   $stmt->bindparam(":userFirst_Name",$FName);
+   $stmt->bindparam(":userMiddle_Name",$MName);
+   $stmt->bindparam(":userLast_Name",$LName);
+   $stmt->bindparam(":userSex",$Sex);
+   $stmt->bindparam(":userBirthDate",$BirthDate);
+   $stmt->bindparam(":userAge",$Age);
+   $stmt->bindparam(":userCivilStatus",$CStatus);
+   $stmt->bindparam(":userReligion",$Religion);
+   $stmt->bindparam(":userProvince",$Province);
+   $stmt->bindparam(":userCity",$City);
+   $stmt->bindparam(":userBarangay",$Barangay);
+   $stmt->bindparam(":userStreet",$Street);
+   $stmt->bindparam(":userPhone_Number",$PNumber);
    $stmt->bindparam(":userEmail",$email);
    $stmt->bindparam(":userPassword",$password);
    $stmt->bindparam(":tokencode",$tokencode);

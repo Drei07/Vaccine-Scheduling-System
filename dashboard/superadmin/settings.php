@@ -47,34 +47,52 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 			</li>
 			<li>
 				<a href="#">
-					<i class='bx bxs-shopping-bag-alt' ></i>
-					<span class="text">My Store</span>
+					<i class='bx bxs-user-account' ></i>
+					<span class="text">Admin Info</span>
 				</a>
 			</li>
 			<li>
 				<a href="#">
-					<i class='bx bxs-doughnut-chart' ></i>
-					<span class="text">Analytics</span>
+					<i class='bx bxs-ambulance' ></i>
+					<span class="text">Health Center Info</span>
 				</a>
 			</li>
 			<li>
 				<a href="#">
-					<i class='bx bxs-message-dots' ></i>
-					<span class="text">Message</span>
+					<i class='bx bxs-baby-carriage' ></i>
+					<span class="text">Baby Info</span>
 				</a>
 			</li>
 			<li>
 				<a href="#">
-					<i class='bx bxs-group' ></i>
-					<span class="text">Team</span>
+					<i class='bx bxs-user-circle' ></i>
+					<span class="text">Parent/User Info</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-calendar-check' ></i>
+					<span class="text">Appointment Info</span>
+				</a>
+			</li>
+			<li>
+				<a href="#">
+					<i class='bx bxs-wrench' ></i>
+					<span class="text">Service Info</span>
 				</a>
 			</li>
 		</ul>
-		<ul class="side-menu">
+		<ul class="side-menu top">
 			<li class="active">
 				<a href="">
 					<i class='bx bxs-cog' ></i>
 					<span class="text">Settings</span>
+				</a>
+			</li>
+			<li>
+				<a href="logs">
+					<i class='bx bxs-calendar-event'></i>
+					<span class="text">Logs</span>
 				</a>
 			</li>
 			<li>
@@ -107,7 +125,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 				<i class='bx bxs-bell' ></i>
 				<span class="num">8</span>
 			</a>
-			<a href="#" class="profile">
+			<a href="profile" class="profile" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Profile">
 				<img src="../../src/img/<?php echo $profile ?>">
 			</a>
 		</nav>
@@ -293,6 +311,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 	<script src="../../src/node_modules/sweetalert/dist/sweetalert.min.js"></script>
     <script src="../../src/node_modules/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
 	<script src="../../src/node_modules/jquery/dist/jquery.min.js"></script>
+	<script src="../../src/js/tooltip.js"></script>
 	<script src="../../src/js/admin.js"></script>
 
 	<script>

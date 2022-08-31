@@ -69,7 +69,7 @@ include_once 'dashboard/superadmin/controller/select-settings-coniguration-contr
 					</div>
 
 					<div class="text-center p-t-136">
-						<a class="txt2" href="#">
+						<a class="txt2" href="registration">
 							Create your Account
 							<i class="fa fa-long-arrow-right m-l-5" aria-hidden="true"></i>
 						</a>
@@ -79,8 +79,6 @@ include_once 'dashboard/superadmin/controller/select-settings-coniguration-contr
 		</div>
 	</div>
 	
-	
-
 	
 	<script src="src/vendor/jquery/jquery-3.2.1.min.js"></script>
 	<script src="src/vendor/bootstrap/js/popper.js"></script>

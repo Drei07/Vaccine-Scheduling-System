@@ -23,10 +23,10 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="../../src/img/<?php echo $logo ?>">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<link rel="stylesheet" href="../../src/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../src/node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../src/node_modules/aos/dist/aos.css">
 	<link rel="stylesheet" href="../../src/css/admin.css?v=<?php echo time(); ?>">
-	<title>Home</title>
+	<title>Logs</title>
 
 </head>
 <body>
@@ -39,7 +39,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 			<span class="text">Vaccine System</span>
 		</a>
 		<ul class="side-menu top">
-			<li class="active">
+			<li>
 				<a href="home">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
@@ -82,15 +82,15 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 				</a>
 			</li>
 		</ul>
-		<ul class="side-menu">
+		<ul class="side-menu top">
 			<li>
 				<a href="settings">
 					<i class='bx bxs-cog' ></i>
 					<span class="text">Settings</span>
 				</a>
 			</li>
-			<li>
-				<a href="logs">
+			<li class="active">
+				<a href="">
 					<i class='bx bxs-calendar-event'></i>
 					<span class="text">Logs</span>
 				</a>
@@ -135,138 +135,37 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1>Dashboard</h1>
+					<h1>Logs</h1>
 					<ul class="breadcrumb">
 						<li>
-							<a href="#">Dashboard</a>
+							<a class="active" href="home">Home</a>
 						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>|</li>
 						<li>
-							<a class="active" href="#">Home</a>
+							<a href="#">Logs</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 
-			<ul class="box-info">
-				<li>
-					<i class='bx bxs-user-account' ></i>
-					<span class="text">
-						<h3>13</h3>
-						<p>Admin</p>
-					</span>
-				</li>
-				<li>
-					<i class='bx bxs-ambulance' ></i>
-					<span class="text">
-						<h3>15</h3>
-						<p>Health Center</p>
-					</span>
-				</li>
-				<li>
-					<i class='bx bxs-baby-carriage'></i>
-					<span class="text">
-						<h3>200</h3>
-						<p>Baby</p>
-					</span>
-				</li>
-				<li>
-					<i class='bx bx-user-circle'></i>
-					<span class="text">
-						<h3>200</h3>
-						<p>Parent</p>
-					</span>
-				</li>
-			</ul>
-
-
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3>Schedule</h3>
+						<h3>Audit Trail</h3>
 						<i class='bx bx-search' ></i>
 						<i class='bx bx-filter' ></i>
 					</div>
-					<table>
-						<thead>
-							<tr>
-								<th>User</th>
-								<th>Date Order</th>
-								<th>Status</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<img src="../../src/img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="../../src/img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="../../src/img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status process">Process</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="../../src/img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="../../src/img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="todo">
-					<div class="head">
-						<h3>Todos</h3>
-						<i class='bx bx-plus' ></i>
-						<i class='bx bx-filter' ></i>
-					</div>
-					<ul class="todo-list">
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-					</ul>
+                    <!-- BODY -->
+                    <section class="data-table">
+                        <div class="searchBx">
+                            <input type="input" placeholder="search . . . . . ." class="search" name="search_box" id="search_box"><button class="searchBtn"><i class="bx bx-search icon"></i></button>
+                        </div>
+
+                        <div class="table">
+                        <div id="dynamic_content">
+                        </div>
+
+                    </section>
 				</div>
 			</div>
 		</main>
@@ -280,8 +179,38 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 	<script src="../../src/js/tooltip.js"></script>
 	<script src="../../src/js/admin.js"></script>
 
-
 	<script>
+
+        //live search---------------------------------------------------------------------------------------//
+        $(document).ready(function(){
+
+        load_data(1);
+
+        function load_data(page, query = '')
+        {
+        $.ajax({
+            url:"data-table/logs-data-table.php",
+            method:"POST",
+            data:{page:page, query:query},
+            success:function(data)
+            {
+            $('#dynamic_content').html(data);
+            }
+        });
+        }
+
+        $(document).on('click', '.page-link', function(){
+        var page = $(this).data('page_number');
+        var query = $('#search_box').val();
+        load_data(page, query);
+        });
+
+        $('#search_box').keyup(function(){
+        var query = $('#search_box').val();
+        load_data(1, query);
+        });
+
+        });
 
 		// Signout
 		$('.logout').on('click', function(e){
