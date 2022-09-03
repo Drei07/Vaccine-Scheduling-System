@@ -37,7 +37,7 @@ $profile_user 	= $row['userProfile'];
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<i class='bx bxs-baby-carriage' ></i>
-			<span class="text">Vaccine System</span>
+			<span class="text">Vaccine</span>
 		</a>
 		<ul class="side-menu top">
 			<li class="active">
@@ -47,19 +47,19 @@ $profile_user 	= $row['userProfile'];
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="baby">
 					<i class='bx bxs-baby-carriage'></i>
 					<span class="text">My Baby</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="appointment">
 					<i class='bx bxs-calendar-check' ></i>
 					<span class="text">Appointment Information</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="services">
                     <i class='bx bxs-wrench' ></i>
 					<span class="text">Services</span>
 				</a>
@@ -67,7 +67,7 @@ $profile_user 	= $row['userProfile'];
 		</ul>
 		<ul class="side-menu">
 			<li>
-				<a href="">
+				<a href="settings">
 					<i class='bx bxs-cog' ></i>
 					<span class="text">Settings</span>
 				</a>
@@ -115,11 +115,11 @@ $profile_user 	= $row['userProfile'];
 					<h1>Dashboard</h1>
 					<ul class="breadcrumb">
 						<li>
-							<a href="#">Dashboard</a>
+							<a class="active" href="home">Home</a>
 						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>|</li>
 						<li>
-							<a class="active" href="#">Home</a>
+							<a href="">Dashboard</a>
 						</li>
 					</ul>
 				</div>

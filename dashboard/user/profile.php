@@ -55,7 +55,7 @@ $updated_at                 = $student["updated_at"];
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<i class='bx bxs-baby-carriage' ></i>
-			<span class="text">Vaccine System</span>
+			<span class="text">Vaccine</span>
 		</a>
 		<ul class="side-menu top">
 			<li class="active">
@@ -65,27 +65,27 @@ $updated_at                 = $student["updated_at"];
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="baby">
 					<i class='bx bxs-baby-carriage'></i>
 					<span class="text">My Baby</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="appointment">
 					<i class='bx bxs-calendar-check' ></i>
 					<span class="text">Appointment Information</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="services">
                     <i class='bx bxs-wrench' ></i>
 					<span class="text">Services</span>
 				</a>
 			</li>
 		</ul>
-		<ul class="side-menu top">
+		<ul class="side-menu">
 			<li>
-				<a href="">
+				<a href="settings">
 					<i class='bx bxs-cog' ></i>
 					<span class="text">Settings</span>
 				</a>
@@ -137,7 +137,7 @@ $updated_at                 = $student["updated_at"];
 						</li>
 						<li>|</li>
 						<li>
-							<a href="#">Profile</a>
+							<a href="">Profile</a>
 						</li>
 					</ul>
 				</div>

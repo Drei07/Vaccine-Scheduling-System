@@ -27,7 +27,8 @@ ol, ul {
 	--light: #F9F9F9;
 	--main: #9053c7;
 	--dark-main:#834eb1;
-	--light-blue: #CFE8FF;
+	--light-blue: #add5fc;
+	--dark-blue: #3d36a3da;
 	--grey: #eee;
 	--dark-grey: #AAAAAA;
 	--light-black: rgb(34, 34, 34);
@@ -445,6 +446,71 @@ border-right-color: var(--main);
 	color: var(--dark);	
 }
 
+#content main .modal-button {
+	text-align: right;
+}
+
+#content main .modal-button button{
+	padding: 8px 16px;
+	border: none;
+	border-radius: 10px;
+}
+
+#content main .info-data {
+	margin-top: 36px;
+	display: grid;
+	grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
+	grid-gap: 20px;
+}
+#content main .info-data .card {
+	border-radius: 20px;
+	cursor: pointer;
+	border: none;
+}
+
+#content main .info-data .card:hover {
+	box-shadow: 7px 5px 10px 1px rgba(0,0,0,0.15);
+}
+
+#content main .card .head {
+	padding: 17px;
+	background-color: var(--light-blue);
+	height: 130px;
+	display: flex;
+	justify-content: space-between;
+	align-items: flex-start;
+	border-radius: 20px;
+	border-left: 20px solid var(--main);
+}
+
+#content main .card .head img {
+	width: 120px;
+	border-radius: 20px;
+	margin-right: 20px;
+}
+
+#content main .card .head h2 {
+	color: var(--dark-blue);
+	font-size: 20px;
+	font-weight: 600;
+}
+
+#content main .card .head .icon {
+	font-size: 20px;
+	color: var(--light);
+	background-color: var(--main);
+	padding: 8px;
+	border-radius: 10px;
+	opacity: 0.5;
+}
+
+#content main .card .head .icon:hover{
+	opacity: 1;
+}
+
+#content main .card .card-body{
+	cursor: pointer;
+}
 
 
 
