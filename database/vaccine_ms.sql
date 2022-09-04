@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 31, 2022 at 09:13 AM
+-- Generation Time: Sep 04, 2022 at 02:52 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -20,6 +20,44 @@ SET time_zone = "+00:00";
 --
 -- Database: `vaccine_ms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `baby`
+--
+
+CREATE TABLE `baby` (
+  `uId` int(145) NOT NULL,
+  `parentId` varchar(145) DEFAULT NULL,
+  `babyId` varchar(145) DEFAULT NULL,
+  `first_name` varchar(145) DEFAULT NULL,
+  `middle_name` varchar(145) DEFAULT NULL,
+  `last_name` varchar(145) DEFAULT NULL,
+  `sex` varchar(145) DEFAULT NULL,
+  `birth_date` varchar(145) DEFAULT NULL,
+  `age` varchar(145) DEFAULT NULL,
+  `place_of_birth` varchar(145) DEFAULT NULL,
+  `name_hospital` varchar(145) DEFAULT NULL,
+  `birth_weight` varchar(145) DEFAULT NULL,
+  `birth_height` varchar(145) DEFAULT NULL,
+  `head_circumference` varchar(145) DEFAULT NULL,
+  `chest_circumference` varchar(145) DEFAULT NULL,
+  `distinguishing_marks` varchar(145) DEFAULT NULL,
+  `obstetrician` varchar(145) DEFAULT NULL,
+  `mother_first_name` varchar(145) DEFAULT NULL,
+  `mother_middle_name` varchar(145) DEFAULT NULL,
+  `mother_last_name` varchar(145) DEFAULT NULL,
+  `mother_phone_number` varchar(145) DEFAULT NULL,
+  `father_first_name` varchar(145) DEFAULT NULL,
+  `father_middle_name` varchar(145) DEFAULT NULL,
+  `father_last_name` varchar(145) DEFAULT NULL,
+  `father_phone_number` varchar(145) DEFAULT NULL,
+  `picture_of_baby` varchar(145) DEFAULT NULL,
+  `account_status` enum('active','disabled') DEFAULT 'active',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -145,7 +183,7 @@ CREATE TABLE `superadmin` (
 --
 
 INSERT INTO `superadmin` (`superadminId`, `name`, `email`, `password`, `tokencode`, `profile`, `created_at`, `updated_at`) VALUES
-(1, 'DATU, JUAN', 'andrei.m.viscayno@gmail.com', '24b35e91f6650c460b66bceaa1590664', 'cf3d41ef87dbd96fe6b963af1eb9c0f6', 'profile.png', '2022-07-03 00:09:13', '2022-08-31 01:52:45');
+(1, 'DATU, JUAN', 'andreishania07012000@gmail.com', '24b35e91f6650c460b66bceaa1590664', 'cf3d41ef87dbd96fe6b963af1eb9c0f6', 'profile.png', '2022-07-03 00:09:13', '2022-09-03 13:18:14');
 
 -- --------------------------------------------------------
 
@@ -168,7 +206,7 @@ CREATE TABLE `system_config` (
 --
 
 INSERT INTO `system_config` (`Id`, `system_name`, `system_number`, `system_email`, `copy_right`, `created_at`, `updated_at`) VALUES
-(1, 'Vaccine Scheduling System', '9776621929', 'andrei.m.viscayno@gmail.com', 'Copyright 2022 AMV. All right reserved', '2022-07-08 12:38:28', '2022-08-31 00:44:13');
+(1, 'Vaccine Schedule System', '9776621929', 'nusuganngelou@gmail.com', 'Copyright 2022 MV. All right reserved', '2022-07-08 12:38:28', '2022-08-31 09:54:15');
 
 -- --------------------------------------------------------
 
@@ -209,41 +247,20 @@ CREATE TABLE `tb_logs` (
 --
 
 INSERT INTO `tb_logs` (`activityId`, `user`, `email`, `activity`, `date`) VALUES
-(1, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-08-07 09:50:50 AM'),
-(2, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-07 09:51:14 AM'),
-(3, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-08 11:27:55 AM'),
-(4, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-08-08 11:28:13 AM'),
-(5, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-09 09:18:46 AM'),
-(6, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-08-09 09:19:06 AM'),
-(7, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-08-10 09:15:22 AM'),
-(8, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-10 09:16:11 AM'),
-(9, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-08-10 10:30:17 PM'),
-(10, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-10 10:39:00 PM'),
-(11, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-11 08:01:18 AM'),
-(12, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-08-11 08:01:50 AM'),
-(13, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-08-12 08:48:43 AM'),
-(14, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-12 08:48:59 AM'),
-(15, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-08-13 09:00:06 AM'),
-(16, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-13 09:00:19 AM'),
-(17, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-13 08:41:54 PM'),
-(18, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-08-13 08:42:08 PM'),
-(19, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-16 09:48:42 AM'),
-(20, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-08-16 09:49:03 AM'),
-(21, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-08-30 09:55:55 PM'),
-(22, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-08-30 10:11:39 PM'),
-(23, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-30 10:15:32 PM'),
-(24, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-30 10:38:59 PM'),
-(25, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-30 10:58:12 PM'),
-(26, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-30 10:59:20 PM'),
-(27, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-31 06:28:47 AM'),
-(28, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-08-31 06:29:04 AM'),
-(29, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-31 07:11:58 AM'),
-(30, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-31 07:13:45 AM'),
-(31, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-31 07:14:27 AM'),
-(32, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-08-31 09:51:29 AM'),
-(33, 'Superadmin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-31 12:35:21 PM'),
-(34, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-31 02:57:41 PM'),
-(35, 'Customer andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-08-31 03:07:50 PM');
+(1, 'Superadmin nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-08-31 04:56:37 PM'),
+(2, 'Superadmin nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-08-31 04:58:45 PM'),
+(3, 'Customer nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-08-31 05:01:59 PM'),
+(4, 'Superadmin nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-08-31 05:50:52 PM'),
+(5, 'Superadmin nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-08-31 06:53:51 PM'),
+(6, 'Customer nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-08-31 06:58:53 PM'),
+(7, 'Superadmin andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-03 08:11:19 AM'),
+(8, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-03 08:12:15 AM'),
+(9, 'Superadmin andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-03 12:09:12 PM'),
+(10, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-03 12:09:49 PM'),
+(11, 'Superadmin andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-03 06:57:39 PM'),
+(12, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-03 06:57:47 PM'),
+(13, 'Superadmin andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-04 09:51:54 AM'),
+(14, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-04 09:51:59 AM');
 
 -- --------------------------------------------------------
 
@@ -282,12 +299,17 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userId`, `userFirst_Name`, `userMiddle_Name`, `userLast_Name`, `userSex`, `userBirthDate`, `userAge`, `userCivilStatus`, `userReligion`, `userProvince`, `userCity`, `userBarangay`, `userStreet`, `userPhone_Number`, `userEmail`, `userPassword`, `userStatus`, `tokencode`, `userProfile`, `uniqueID`, `account_status`, `created_at`, `updated_at`) VALUES
-(197, 'ANDREI', 'MANALANSAN', 'VISCAYNO', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '9776621929', 'andreishania07012000@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'Y', 'b3c2dc375edf8a69d45bcbeac8f805a5', 'profile.png', '68414511', 'active', '2022-07-05 11:39:33', '2022-08-31 01:57:56'),
-(200, 'ANDREI', 'MANALANSAN', 'viscayno', 'MALE', '2000-01-07', '22', 'SINGLE', 'ROMAN CATHOLIC', 'BATAAN', 'HERMOSA', 'SABA', 'CENTRO', '9776621929', 'andrei.m.viscayno@gmail.com', '8280cf6cf941dbabb5ebabf6a8016c0f', 'Y', '179052851549a7a2aba597bdf663f826', 'profile.png', '61325258', 'active', '2022-08-31 06:57:06', '2022-08-31 07:07:30');
+(2, 'ANGELOU', 'SANGALANG', 'NUSUG', 'FEMALE', '1999-01-07', '23', 'SINGLE', 'INC', 'PAMPANGA', 'LUBAO', 'STA. CRUZ', 'QUEZON ST.', '9673527711', 'andreishania07012000@gmail.com', '24b35e91f6650c460b66bceaa1590664', 'Y', '0dd0a99f144e335d0726a8304281d6a1', 'profile.png', '26835870', 'active', '2022-08-31 10:58:06', '2022-09-03 00:11:50');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `baby`
+--
+ALTER TABLE `baby`
+  ADD PRIMARY KEY (`uId`);
 
 --
 -- Indexes for table `email_config`
@@ -342,6 +364,12 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `baby`
+--
+ALTER TABLE `baby`
+  MODIFY `uId` int(145) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `email_config`
 --
 ALTER TABLE `email_config`
@@ -381,13 +409,13 @@ ALTER TABLE `system_logo`
 -- AUTO_INCREMENT for table `tb_logs`
 --
 ALTER TABLE `tb_logs`
-  MODIFY `activityId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=36;
+  MODIFY `activityId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `userId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=201;
+  MODIFY `userId` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
