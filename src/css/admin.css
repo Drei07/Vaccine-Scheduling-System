@@ -40,6 +40,7 @@ ol, ul {
 	--light-orange: #FFE0D3;
 	--green: #81D43A;
 	--light-green: #e1f8cc;
+	--dark-red: rgb(209, 4, 4);
 }
 
 html {
@@ -464,7 +465,7 @@ border-right-color: var(--main);
 }
 #content main .info-data .card {
 	border-radius: 20px;
-	cursor: pointer;
+
 	border: none;
 }
 
@@ -475,7 +476,7 @@ border-right-color: var(--main);
 #content main .card .head {
 	padding: 17px;
 	background-color: var(--light-blue);
-	height: 130px;
+	height: 100%;
 	display: flex;
 	justify-content: space-between;
 	align-items: flex-start;
@@ -483,8 +484,15 @@ border-right-color: var(--main);
 	border-left: 20px solid var(--main);
 }
 
+#content main .card .head .body {
+	display: flex;
+	align-items: center;
+	cursor: pointer;
+}
+
 #content main .card .head img {
-	width: 120px;
+	max-width: 80px;
+	min-height: 80px;
 	border-radius: 20px;
 	margin-right: 20px;
 }
@@ -492,7 +500,14 @@ border-right-color: var(--main);
 #content main .card .head h2 {
 	color: var(--dark-blue);
 	font-size: 20px;
-	font-weight: 600;
+	font-weight: 700;
+	letter-spacing: 2px;
+}
+#content main .card .head h2 label{
+	font-size: 15px;
+	font-weight: 50;
+	color: var(--dark-blue);
+	letter-spacing: 2px;
 }
 
 #content main .card .head .icon {

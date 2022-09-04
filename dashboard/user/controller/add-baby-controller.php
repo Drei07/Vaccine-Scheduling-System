@@ -14,7 +14,7 @@ if(!$user_home->is_logged_in())
 if(isset($_POST['btn-register'])) {
     
     $parentID                       = trim($_POST['parentId']);
-    $BabyID                         = str_pad(mt_rand(1,99999999),8,'0',STR_PAD_LEFT);
+    $BabyID                         = "BBYID-".(str_pad(mt_rand(1,99999999),8,'0',STR_PAD_LEFT));
     $FName                          = trim($_POST['FName']);
     $MName                          = trim($_POST['MName']);
     $LName                          = trim($_POST['LName']);
@@ -136,10 +136,10 @@ if(isset($_POST['btn-register'])) {
       $_SESSION['status'] = "Baby is now registered";
       $_SESSION['status_code'] = "success";
       $_SESSION['status_timer'] = 40000;
-      header('Location: ../add-baby');
+      header('Location: ../baby');
 
       if (move_uploaded_file($_FILES['baby_image']['tmp_name'], $folder)) {
-        header('Location: ../add-baby');
+        header('Location: ../baby');
     }
 }
 
@@ -149,7 +149,7 @@ else
     $_SESSION['status'] = "Something went wrong, please try again!";
     $_SESSION['status_code'] = "error";
     $_SESSION['status_timer'] = 100000;
-    header('Location: ../add-baby');
+    header('Location: ../baby');
 
 }
 

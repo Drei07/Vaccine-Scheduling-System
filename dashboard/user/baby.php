@@ -15,6 +15,7 @@ $stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $profile_user 	= $row['userProfile'];
+$parentID       = $row['uniqueID'];
 
 ?>
 <!DOCTYPE html>
@@ -128,50 +129,57 @@ $profile_user 	= $row['userProfile'];
 				<button type="button" onclick="location.href='add-baby'" class="btn-primary" class="btn btn-primary"><i class='bx bxs-plus-circle'></i> Add Baby</button>
 			</div>
             <div class="info-data">
-				<div class="card">
-					<div class="head">
-						<div>
-							<h2>
-                                <img src="../../src/img/baby.jfif" alt=""> 
-                                ANDREI VISCAYNO
-                            </h2>
-						</div>
-						<i class='bx bxs-trash icon'></i>
-					</div>
-				</div>
-				<div class="card">
-					<div class="head">
-						<div class="body">
-							<h2>
-                                <img src="../../src/img/baby.jfif" alt=""> 
-                                ANDREI VISCAYNO
-                            </h2>
-						</div>
-						<i class='bx bxs-trash icon'></i>
-					</div>
-				</div>
-				<div class="card">
-					<div class="head">
-						<div>
-							<h2>
-                                <img src="../../src/img/baby.jfif" alt=""> 
-                                ANDREI VISCAYNO
-                            </h2>
-						</div>
-						<i class='bx bxs-trash icon'></i>
-					</div>
-				</div>
-				<div class="card">
-					<div class="head">
-						<div>
-							<h2>
-                                <img src="../../src/img/baby.jfif" alt=""> 
-                                ANDREI VISCAYNO
-                            </h2>
-						</div>
-						<i class='bx bxs-trash icon'></i>
-					</div>
-				</div>
+
+				<?php
+
+					$pdoQuery = "SELECT * FROM baby WHERE parentId = :parentId AND account_status = :account_status";
+					$pdoResult = $pdoConnect->prepare($pdoQuery);
+					$pdoResult->execute(array
+					( 
+						":parentId"			=>$parentID,  
+						":account_status"	=> "active" 
+					));	
+					if($pdoResult->rowCount() >= 1)
+					{	
+					
+						while($baby_data=$pdoResult->fetch(PDO::FETCH_ASSOC)){
+							extract($row);
+				?>
+
+						<div class="card">
+							<div class="head">
+								<div class="body" onclick="location.href='baby-profile?Id=<?php echo $baby_data['babyId'] ?>'">
+									<img src="../../src/img/<?php echo $baby_data['picture_of_baby']; ?>" alt="baby-profile"> 
+
+									<h2>
+										<?php echo $baby_data['last_name']; ?>, 
+										<?php echo $baby_data['first_name']; ?>
+										<?php 
+											if($baby_data['middle_name'] ==  NULL){
+												echo "";
+											}
+											else{
+												$baby_middle_name = $baby_data['middle_name'];
+												echo ($baby_middle_name[0]).".";
+											}
+										?>
+										<br>
+										<label><?php echo $baby_data['babyId'] ?></label>
+									</h2>
+								</div>
+								<a href="controller/delete-baby-controller.php?Id=<?php echo $baby_data['babyId'] ?>" class="delete-baby"><i class='bx bxs-trash icon'></i></a>
+							</div>
+						</div>				
+
+				<?php
+						}
+					}
+					else{
+				?>
+					<h1 class="no-data">No Baby's Found</h1>
+				<?php
+					}
+				?>
 			</div>
 		</main>
 		<!-- MAIN -->
@@ -186,6 +194,26 @@ $profile_user 	= $row['userProfile'];
 
 
 	<script>
+
+		// Delete Baby
+		$('.delete-baby').on('click', function(e){
+		e.preventDefault();
+		const href = $(this).attr('href')
+
+				swal({
+				title: "Remove?",
+				text: "Are you sure do you want to remove this baby?",
+				icon: "info",
+				buttons: true,
+				dangerMode: true,
+			})
+			.then((willSignout) => {
+				if (willSignout) {
+				document.location.href = href;
+				}
+			});
+		})
+
 
 		// Signout
 		$('.logout').on('click', function(e){
