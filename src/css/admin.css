@@ -463,6 +463,17 @@ border-right-color: var(--main);
 	grid-template-columns: repeat(auto-fit, minmax(100%, 1fr));
 	grid-gap: 20px;
 }
+
+#content main .info-data .no-data {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	margin-top: 10rem;
+	font-size: 30px;
+	font-weight: bold;
+	color: var(--dark-main);
+	opacity: 0.5;
+}
 #content main .info-data .card {
 	border-radius: 20px;
 
