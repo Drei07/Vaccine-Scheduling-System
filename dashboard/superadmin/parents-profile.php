@@ -1,38 +1,46 @@
 <?php
 include_once '../../database/dbconfig2.php';
-require_once 'authentication/user-class.php';
-include_once "../superadmin/controller/select-settings-coniguration-controller.php";
+require_once 'authentication/superadmin-class.php';
+include_once 'controller/select-settings-coniguration-controller.php';
 
 
-$user_home = new USER();
+$superadmin_home = new SUPERADMIN();
 
-if(!$user_home->is_logged_in())
+if(!$superadmin_home->is_logged_in())
 {
- $user_home->redirect('../../');
+ $superadmin_home->redirect('../../public/superadmin/signin');
 }
 
-$stmt = $user_home->runQuery("SELECT * FROM user WHERE userId=:uid");
-$stmt->execute(array(":uid"=>$_SESSION['userSession']));
-$parent = $stmt->fetch(PDO::FETCH_ASSOC);
+$stmt = $superadmin_home->runQuery("SELECT * FROM superadmin WHERE superadminId=:uid");
+$stmt->execute(array(":uid"=>$_SESSION['superadminSession']));
+$row = $stmt->fetch(PDO::FETCH_ASSOC);
 
-$UId 						= $parent['userId'];
-$first_name                 = $parent["userFirst_Name"];
-$middle_name                = $parent["userMiddle_Name"];
-$last_name                  = $parent["userLast_Name"];
-$sex                        = $parent["userSex"];
-$birth_date                 = $parent["userBirthDate"];
-$age                        = $parent["userAge"];
-$civil_status               = $parent["userCivilStatus"];
-$religion                   = $parent["userReligion"];
-$phone_number               = $parent["userPhone_Number"];
-$email                      = $parent["userEmail"];
-$province                   = $parent["userProvince"];
-$city                       = $parent["userCity"];
-$barangay                   = $parent["userBarangay"];
-$street                   	= $parent["userStreet"];
-$profile_user				=$parent["userProfile"];
-$created_at                 = $parent["created_at"];
-$updated_at                 = $parent["updated_at"];
+$uniqueID = $_GET["uniqueID"];
+
+
+$pdoQuery = "SELECT * FROM user WHERE uniqueID = :uniqueID";
+$pdoResult = $pdoConnect->prepare($pdoQuery);
+$pdoExec = $pdoResult->execute(array(":uniqueID" => $uniqueID));
+$parent = $pdoResult->fetch(PDO::FETCH_ASSOC);
+
+$UId 		            =        $parent['userId'];
+$first_name             =        $parent["userFirst_Name"];
+$middle_name            =        $parent["userMiddle_Name"];
+$last_name              =        $parent["userLast_Name"];
+$sex                    =        $parent["userSex"];
+$birth_date             =        $parent["userBirthDate"];
+$age                    =        $parent["userAge"];
+$civil_status           =        $parent["userCivilStatus"];
+$religion               =        $parent["userReligion"];
+$phone_number           =        $parent["userPhone_Number"];
+$email                  =        $parent["userEmail"];
+$province               =        $parent["userProvince"];
+$city                   =        $parent["userCity"];
+$barangay               =        $parent["userBarangay"];
+$street                 =        $parent["userStreet"];
+$profile_user			=        $parent["userProfile"];
+$created_at             =        $parent["created_at"];
+$updated_at             =        $parent["updated_at"];
 
 ?>
 <!DOCTYPE html>
@@ -45,7 +53,7 @@ $updated_at                 = $parent["updated_at"];
     <link rel="stylesheet" href="../../src/node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../src/node_modules/aos/dist/aos.css">
 	<link rel="stylesheet" href="../../src/css/admin.css?v=<?php echo time(); ?>">
-	<title>Profile</title>
+	<title>Parents Information</title>
 
 </head>
 <body>
@@ -57,7 +65,7 @@ $updated_at                 = $parent["updated_at"];
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<i class='bx bxs-baby-carriage' ></i>
-			<span class="text">Vaccine</span>
+			<span class="text">Vaccine System</span>
 		</a>
 		<ul class="side-menu top">
 			<li>
@@ -67,25 +75,25 @@ $updated_at                 = $parent["updated_at"];
 				</a>
 			</li>
 			<li>
+				<a href="health-center">
+					<i class='bx bxs-ambulance' ></i>
+					<span class="text">Health Center Info</span>
+				</a>
+			</li>
+			<li>
 				<a href="baby">
-					<i class='bx bxs-baby-carriage'></i>
-					<span class="text">My Baby</span>
+					<i class='bx bxs-baby-carriage' ></i>
+					<span class="text">Baby Info</span>
 				</a>
 			</li>
-			<li>
-				<a href="appointment">
-					<i class='bx bxs-calendar-check' ></i>
-					<span class="text">Appointment Information</span>
-				</a>
-			</li>
-			<li>
-				<a href="services">
-                    <i class='bx bxs-wrench' ></i>
-					<span class="text">Services</span>
+			<li class="active">
+				<a href="">
+					<i class='bx bxs-user-circle' ></i>
+					<span class="text">Parent/User Info</span>
 				</a>
 			</li>
 		</ul>
-		<ul class="side-menu">
+		<ul class="side-menu top">
 			<li>
 				<a href="settings">
 					<i class='bx bxs-cog' ></i>
@@ -93,7 +101,13 @@ $updated_at                 = $parent["updated_at"];
 				</a>
 			</li>
 			<li>
-				<a href="authentication/user-signout" class="logout">
+				<a href="logs">
+					<i class='bx bxs-calendar-event'></i>
+					<span class="text">Logs</span>
+				</a>
+			</li>
+			<li>
+				<a href="authentication/superadmin-signout" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Signout</span>
 				</a>
@@ -123,7 +137,7 @@ $updated_at                 = $parent["updated_at"];
 				<span class="num">8</span>
 			</a>
 			<a href="profile" class="profile" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Profile">
-				<img src="../../src/img/<?php echo $profile_user ?>">
+				<img src="../../src/img/<?php echo $profile ?>">
 			</a>
 		</nav>
 		<!-- NAVBAR -->
@@ -132,14 +146,14 @@ $updated_at                 = $parent["updated_at"];
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1>Profile</h1>
+					<h1>Parents</h1>
 					<ul class="breadcrumb">
 						<li>
 							<a class="active" href="home">Home</a>
 						</li>
 						<li>|</li>
 						<li>
-							<a href="">Profile</a>
+							<a href="#">Parents</a>
 						</li>
 					</ul>
 				</div>
@@ -148,7 +162,7 @@ $updated_at                 = $parent["updated_at"];
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3>Profile Configuration</h3>
+						<h3>Profile </h3>
 						<i class='bx bx-search' ></i>
 						<i class='bx bx-filter' ></i>
 					</div>
@@ -174,7 +188,7 @@ $updated_at                 = $parent["updated_at"];
 
 									<div class="col-md-6">
 										<label for="first_name" class="form-label">First Name<span> *</span></label>
-										<input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" value="<?php echo $first_name ?>" autocapitalize="on" maxlength="15" autocomplete="off" name="FName" id="first_name"  required>
+										<input type="text"  onkeyup="this.value = this.value.toUpperCase();" class="form-control" value="<?php echo $first_name ?>" autocapitalize="on" maxlength="15" autocomplete="off" name="FName" id="first_name"  required>
 										<div class="invalid-feedback">
 										Please provide a First Name.
 										</div>
@@ -424,61 +438,36 @@ $updated_at                 = $parent["updated_at"];
 
 	<script>
 
-        
-		// Form
-		(function () {
-			'use strict'
-			var forms = document.querySelectorAll('.needs-validation')
-			Array.prototype.slice.call(forms)
-			.forEach(function (form) {
-				form.addEventListener('submit', function (event) {
-				if (!form.checkValidity()) {
-					event.preventDefault()
-					event.stopPropagation()
-				}
+        //live search---------------------------------------------------------------------------------------//
+        $(document).ready(function(){
 
-				form.classList.add('was-validated')
-				}, false)
-			})
-		})();
+        load_data(1);
 
-		// Buttons Profile
-		function edit(){
-			document.getElementById('Edit').style.display = 'block';
-			document.getElementById('password').style.display = 'none';
-			document.getElementById('avatar').style.display = 'none';
-		}
+        function load_data(page, query = '')
+        {
+        $.ajax({
+            url:"data-table/parents-data-table.php",
+            method:"POST",
+            data:{page:page, query:query},
+            success:function(data)
+            {
+            $('#dynamic_content').html(data);
+            }
+        });
+        }
 
-		function avatar(){
-			document.getElementById('avatar').style.display = 'block';
-			document.getElementById('Edit').style.display = 'none';
-			document.getElementById('password').style.display = 'none';
-		}
+        $(document).on('click', '.page-link', function(){
+        var page = $(this).data('page_number');
+        var query = $('#search_box').val();
+        load_data(page, query);
+        });
 
-		function password(){
-			document.getElementById('password').style.display = 'block';
-			document.getElementById('avatar').style.display = 'none';
-			document.getElementById('Edit').style.display = 'none';
-		}
+        $('#search_box').keyup(function(){
+        var query = $('#search_box').val();
+        load_data(1, query);
+        });
 
-        //Delete Profile
-		$('.delete').on('click', function(e){
-		e.preventDefault();
-		const href = $(this).attr('href')
-
-				swal({
-				title: "Delete?",
-				text: "Do you want to delete?",
-				icon: "warning",
-				buttons: true,
-				dangerMode: true,
-			})
-			.then((willDelete) => {
-				if (willDelete) {
-				document.location.href = href;
-				}
-			});
-		})
+        });
 
 		// Signout
 		$('.logout').on('click', function(e){

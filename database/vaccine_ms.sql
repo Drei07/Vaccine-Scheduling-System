@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 04, 2022 at 02:52 PM
+-- Generation Time: Sep 18, 2022 at 02:58 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -59,6 +59,13 @@ CREATE TABLE `baby` (
   `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `baby`
+--
+
+INSERT INTO `baby` (`uId`, `parentId`, `babyId`, `first_name`, `middle_name`, `last_name`, `sex`, `birth_date`, `age`, `place_of_birth`, `name_hospital`, `birth_weight`, `birth_height`, `head_circumference`, `chest_circumference`, `distinguishing_marks`, `obstetrician`, `mother_first_name`, `mother_middle_name`, `mother_last_name`, `mother_phone_number`, `father_first_name`, `father_middle_name`, `father_last_name`, `father_phone_number`, `picture_of_baby`, `account_status`, `created_at`, `updated_at`) VALUES
+(1, '26835870', 'BBYID-33239582', 'ANGELOU', 'SANGALANG', 'NUSUG', 'FEMALE', '2000-01-07', '22', 'LUBAO. PAMPAMNGA', 'LUBA HOSPITAL', '24', '25', '23', '23', 'BALAT', 'ERICA SANGALANG', 'ANGELOU', 'SANGALANG', 'NUSUG', '9673527711', '', '', '', '', 'child+female+girl+kid+user+young+icon-1320196265224558260.png', 'active', '2022-09-18 02:16:49', '2022-09-18 12:56:51');
+
 -- --------------------------------------------------------
 
 --
@@ -104,66 +111,6 @@ INSERT INTO `google_recaptcha_api` (`Id`, `site_key`, `site_secret_key`, `create
 -- --------------------------------------------------------
 
 --
--- Table structure for table `student`
---
-
-CREATE TABLE `student` (
-  `userId` int(145) NOT NULL,
-  `first_name` varchar(145) DEFAULT NULL,
-  `middle_name` varchar(145) DEFAULT NULL,
-  `last_name` varchar(145) DEFAULT NULL,
-  `sex` varchar(145) DEFAULT NULL,
-  `birth_date` varchar(145) DEFAULT NULL,
-  `age` varchar(145) DEFAULT NULL,
-  `place_of_birth` varchar(145) DEFAULT NULL,
-  `civil_status` varchar(145) DEFAULT NULL,
-  `nationality` varchar(145) DEFAULT NULL,
-  `religion` varchar(145) DEFAULT NULL,
-  `phone_number` varchar(145) DEFAULT NULL,
-  `email` varchar(145) DEFAULT NULL,
-  `province` varchar(145) DEFAULT NULL,
-  `city` varchar(145) DEFAULT NULL,
-  `barangay` varchar(147) DEFAULT NULL,
-  `street` varchar(145) DEFAULT NULL,
-  `password` varchar(145) DEFAULT NULL,
-  `created_at` timestamp NULL DEFAULT current_timestamp(),
-  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data for table `student`
---
-
-INSERT INTO `student` (`userId`, `first_name`, `middle_name`, `last_name`, `sex`, `birth_date`, `age`, `place_of_birth`, `civil_status`, `nationality`, `religion`, `phone_number`, `email`, `province`, `city`, `barangay`, `street`, `password`, `created_at`, `updated_at`) VALUES
-(1, 'ROMMEL', 'PANO', 'ANCIENTE', 'MALE', '2000-01-07', '22', '', 'SINGLE', 'Philippines', 'Roman Catholic', '', '', 'BATAAN', 'HERMOSA', 'SABA', '', NULL, '2022-07-30 12:44:59', '2022-08-06 11:46:07'),
-(2, 'CHARLIE', 'BUHALE', 'BELTRAN', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:45:38', NULL),
-(3, 'TYRON', 'DELA CRUZ', 'BERCASIO', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:46:46', NULL),
-(4, 'JANCEE JOERN', 'MENDOZA', 'CAPATI', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:47:50', NULL),
-(5, 'JOHN PHILIP', 'LAZARO', 'DABU', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:48:27', NULL),
-(6, 'NATHANIEL', 'EBOJO', 'DABU', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:48:58', NULL),
-(7, 'RIXMON', 'CUDUG', 'DABU', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:49:33', NULL),
-(8, 'RODOLFO JR', 'ANTANG', 'DE GUZMAN', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:50:06', NULL),
-(9, 'GARBRIEL NIKOLAI', 'GAMAD', 'DELA PENA', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:51:08', NULL),
-(10, 'FIAZ ALI', 'TOMNES', 'DIZON', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:51:37', NULL),
-(11, 'RAYMOND', '', 'GERONIMO', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:52:31', NULL),
-(12, 'LEEANN', 'TORNO', 'LASCANO', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:53:21', NULL),
-(13, 'ALDRIN', 'PUCUT', 'LOZANO', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:53:49', NULL),
-(14, 'FRANZ', 'LUATON', 'MALLARI', 'MALE', '2004-07-14', '18', 'LUBAO, PAMPANGA', 'SINGLE', 'Philippines', 'ROMAN CATHOLIC', '9776621929', '', 'PAMPANGA', 'LUBAO', 'SAN PABLO', '', NULL, '2022-07-30 12:54:48', '2022-08-16 02:02:07'),
-(15, 'JOHN LENON', 'GABAYAN', 'MALLARI', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:55:18', NULL),
-(16, 'MAISON SEDRICK', 'GAQUING', 'MALLARI', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:56:13', NULL),
-(17, 'ARON', 'DAIT', 'MIRANDO', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:56:50', '2022-08-13 05:10:26'),
-(18, 'ATHAN TYRON', 'ANCHETA', 'RAZON', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:57:29', NULL),
-(19, 'IVAN EZEKIEL', 'MANALO', 'REGALA', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:57:56', NULL),
-(20, 'JAYMAR', 'RONQUILLO', 'YAMBAO', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:58:23', NULL),
-(21, 'RISSEL JANE', 'FLORES', 'AQUINO', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:59:08', NULL),
-(22, 'KATRINA JANE', 'SUNGA', 'LUGTU', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 12:59:35', NULL),
-(23, 'KEITH ANN', 'SUNGA', 'LUGTU', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 13:00:50', NULL),
-(24, 'KAYLEEN', 'DAVID', 'PINEDA', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 13:01:43', NULL),
-(25, 'GLAIZA', 'MALIG', 'QUIMBAO', '', '', '', '', '', 'Philippines', '', '', '', '', '', '', '', NULL, '2022-07-30 13:02:05', NULL);
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `superadmin`
 --
 
@@ -183,7 +130,7 @@ CREATE TABLE `superadmin` (
 --
 
 INSERT INTO `superadmin` (`superadminId`, `name`, `email`, `password`, `tokencode`, `profile`, `created_at`, `updated_at`) VALUES
-(1, 'DATU, JUAN', 'andreishania07012000@gmail.com', '24b35e91f6650c460b66bceaa1590664', 'cf3d41ef87dbd96fe6b963af1eb9c0f6', 'profile.png', '2022-07-03 00:09:13', '2022-09-03 13:18:14');
+(1, 'DATU, JUAN', 'nusuganngelou@gmail.com', '24b35e91f6650c460b66bceaa1590664', 'cf3d41ef87dbd96fe6b963af1eb9c0f6', 'profile.png', '2022-07-03 00:09:13', '2022-09-18 12:57:58');
 
 -- --------------------------------------------------------
 
@@ -242,26 +189,6 @@ CREATE TABLE `tb_logs` (
   `date` varchar(145) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `tb_logs`
---
-
-INSERT INTO `tb_logs` (`activityId`, `user`, `email`, `activity`, `date`) VALUES
-(1, 'Superadmin nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-08-31 04:56:37 PM'),
-(2, 'Superadmin nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-08-31 04:58:45 PM'),
-(3, 'Customer nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-08-31 05:01:59 PM'),
-(4, 'Superadmin nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-08-31 05:50:52 PM'),
-(5, 'Superadmin nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-08-31 06:53:51 PM'),
-(6, 'Customer nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-08-31 06:58:53 PM'),
-(7, 'Superadmin andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-03 08:11:19 AM'),
-(8, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-03 08:12:15 AM'),
-(9, 'Superadmin andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-03 12:09:12 PM'),
-(10, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-03 12:09:49 PM'),
-(11, 'Superadmin andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-03 06:57:39 PM'),
-(12, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-03 06:57:47 PM'),
-(13, 'Superadmin andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-04 09:51:54 AM'),
-(14, 'Customer andreishania07012000@gmail.com', 'andreishania07012000@gmail.com', 'Has successfully signed in', '2022-09-04 09:51:59 AM');
-
 -- --------------------------------------------------------
 
 --
@@ -299,7 +226,7 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userId`, `userFirst_Name`, `userMiddle_Name`, `userLast_Name`, `userSex`, `userBirthDate`, `userAge`, `userCivilStatus`, `userReligion`, `userProvince`, `userCity`, `userBarangay`, `userStreet`, `userPhone_Number`, `userEmail`, `userPassword`, `userStatus`, `tokencode`, `userProfile`, `uniqueID`, `account_status`, `created_at`, `updated_at`) VALUES
-(2, 'ANGELOU', 'SANGALANG', 'NUSUG', 'FEMALE', '1999-01-07', '23', 'SINGLE', 'INC', 'PAMPANGA', 'LUBAO', 'STA. CRUZ', 'QUEZON ST.', '9673527711', 'andreishania07012000@gmail.com', '24b35e91f6650c460b66bceaa1590664', 'Y', '0dd0a99f144e335d0726a8304281d6a1', 'profile.png', '26835870', 'active', '2022-08-31 10:58:06', '2022-09-03 00:11:50');
+(2, 'ANGELOU', 'SANGALANG', 'NUSUG', 'FEMALE', '1999-01-07', '23', 'SINGLE', 'INC', 'PAMPANGA', 'LUBAO', 'STA. CRUZ', 'QUEZON ST.', '9673527711', 'nusuganngelou@gmail.com', '24b35e91f6650c460b66bceaa1590664', 'Y', '0dd0a99f144e335d0726a8304281d6a1', 'profile.png', '26835870', 'active', '2022-08-31 10:58:06', '2022-09-18 12:57:52');
 
 --
 -- Indexes for dumped tables
@@ -322,12 +249,6 @@ ALTER TABLE `email_config`
 --
 ALTER TABLE `google_recaptcha_api`
   ADD PRIMARY KEY (`Id`);
-
---
--- Indexes for table `student`
---
-ALTER TABLE `student`
-  ADD PRIMARY KEY (`userId`);
 
 --
 -- Indexes for table `superadmin`
@@ -367,7 +288,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `baby`
 --
 ALTER TABLE `baby`
-  MODIFY `uId` int(145) NOT NULL AUTO_INCREMENT;
+  MODIFY `uId` int(145) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `email_config`
@@ -380,12 +301,6 @@ ALTER TABLE `email_config`
 --
 ALTER TABLE `google_recaptcha_api`
   MODIFY `Id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
--- AUTO_INCREMENT for table `student`
---
-ALTER TABLE `student`
-  MODIFY `userId` int(145) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 
 --
 -- AUTO_INCREMENT for table `superadmin`
@@ -409,7 +324,7 @@ ALTER TABLE `system_logo`
 -- AUTO_INCREMENT for table `tb_logs`
 --
 ALTER TABLE `tb_logs`
-  MODIFY `activityId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `activityId` int(100) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`

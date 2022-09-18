@@ -28,7 +28,7 @@ $parentID       = $row['uniqueID'];
 	<link rel="stylesheet" href="../../src/node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../src/node_modules/aos/dist/aos.css">
 	<link rel="stylesheet" href="../../src/css/admin.css?v=<?php echo time(); ?>">
-	<title>Baby</title>
+	<title>Appointment</title>
 
 </head>
 <body>
@@ -49,14 +49,14 @@ $parentID       = $row['uniqueID'];
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
-			<li class="active">
+			<li>
 				<a href="baby">
 					<i class='bx bxs-baby-carriage'></i>
 					<span class="text">My Baby</span>
 				</a>
 			</li>
-			<li>
-				<a href="appointment">
+			<li class="active">
+				<a href="">
 					<i class='bx bxs-calendar-check' ></i>
 					<span class="text">Appointment Information</span>
 				</a>
@@ -115,73 +115,17 @@ $parentID       = $row['uniqueID'];
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1>My Baby</h1>
+					<h1>Appointment</h1>
 					<ul class="breadcrumb">
 						<li>
 							<a class="active" href="home">Home</a>
 						</li>
 						<li>|</li>
 						<li>
-							<a href="">My Baby</a>
+							<a href="">Appointment</a>
 						</li>
 					</ul>
 				</div>
-			</div>
-            <div class="modal-button">
-				<button type="button" onclick="location.href='add-baby'" class="btn-primary" class="btn btn-primary"><i class='bx bxs-plus-circle'></i> Add Baby</button>
-			</div>
-            <div class="info-data">
-
-				<?php
-
-					$pdoQuery = "SELECT * FROM baby WHERE parentId = :parentId AND account_status = :account_status";
-					$pdoResult = $pdoConnect->prepare($pdoQuery);
-					$pdoResult->execute(array
-					( 
-						":parentId"			=>$parentID,  
-						":account_status"	=> "active" 
-					));	
-					if($pdoResult->rowCount() >= 1)
-					{	
-					
-						while($baby_data=$pdoResult->fetch(PDO::FETCH_ASSOC)){
-							extract($row);
-				?>
-
-						<div class="card">
-							<div class="head">
-								<div class="body" onclick="location.href='baby-profile?Id=<?php echo $baby_data['babyId'] ?>'">
-									<img src="../../src/img/<?php echo $baby_data['picture_of_baby']; ?>" alt="baby-profile"> 
-
-									<h2>
-										<?php echo $baby_data['last_name']; ?>, 
-										<?php echo $baby_data['first_name']; ?>
-										<?php 
-											if($baby_data['middle_name'] ==  NULL){
-												echo "";
-											}
-											else{
-												$baby_middle_name = $baby_data['middle_name'];
-												echo ($baby_middle_name[0]).".";
-											}
-										?>
-										<br>
-										<label><?php echo $baby_data['babyId'] ?></label>
-									</h2>
-								</div>
-								<a href="controller/delete-baby-controller.php?Id=<?php echo $baby_data['babyId'] ?>" class="delete-baby"><i class='bx bxs-trash icon'></i></a>
-							</div>
-						</div>				
-
-				<?php
-						}
-					}
-					else{
-				?>
-					<h1 class="no-data">No Baby's Found</h1>
-				<?php
-					}
-				?>
 			</div>
 		</main>
 		<!-- MAIN -->

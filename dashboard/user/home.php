@@ -32,6 +32,8 @@ $profile_user 	= $row['userProfile'];
 </head>
 <body>
 
+<!-- Loader -->
+<div class="loader"></div>
 
 	<!-- SIDEBAR -->
 	<section id="sidebar">
@@ -249,6 +251,7 @@ $profile_user 	= $row['userProfile'];
 	<script src="../../src/node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../../src/js/tooltip.js"></script>
 	<script src="../../src/js/admin.js"></script>
+	<script src="../../src/js/loader.js"></script>
 
 
 	<script>

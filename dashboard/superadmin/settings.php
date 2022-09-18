@@ -31,6 +31,8 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 </head>
 <body>
 
+<!-- Loader -->
+<div class="loader"></div>
 
 	<!-- SIDEBAR -->
 	<section id="sidebar">
@@ -46,39 +48,21 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 				</a>
 			</li>
 			<li>
-				<a href="#">
-					<i class='bx bxs-user-account' ></i>
-					<span class="text">Admin Info</span>
-				</a>
-			</li>
-			<li>
-				<a href="#">
+				<a href="health-center">
 					<i class='bx bxs-ambulance' ></i>
 					<span class="text">Health Center Info</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="baby">
 					<i class='bx bxs-baby-carriage' ></i>
 					<span class="text">Baby Info</span>
 				</a>
 			</li>
 			<li>
-				<a href="#">
+				<a href="parents">
 					<i class='bx bxs-user-circle' ></i>
 					<span class="text">Parent/User Info</span>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<i class='bx bxs-calendar-check' ></i>
-					<span class="text">Appointment Info</span>
-				</a>
-			</li>
-			<li>
-				<a href="#">
-					<i class='bx bxs-wrench' ></i>
-					<span class="text">Service Info</span>
 				</a>
 			</li>
 		</ul>
@@ -313,6 +297,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 	<script src="../../src/node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../../src/js/tooltip.js"></script>
 	<script src="../../src/js/admin.js"></script>
+	<script src="../../src/js/loader.js"></script>
 
 	<script>
 

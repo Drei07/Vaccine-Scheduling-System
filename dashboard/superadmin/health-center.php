@@ -1,21 +1,19 @@
 <?php
 include_once '../../database/dbconfig2.php';
-require_once 'authentication/user-class.php';
-include_once __DIR__ .'/../superadmin/controller/select-settings-coniguration-controller.php';
+require_once 'authentication/superadmin-class.php';
+include_once 'controller/select-settings-coniguration-controller.php';
 
-$user_home = new USER();
 
-if(!$user_home->is_logged_in())
+$superadmin_home = new SUPERADMIN();
+
+if(!$superadmin_home->is_logged_in())
 {
- $user_home->redirect('../../');
+ $superadmin_home->redirect('../../public/superadmin/signin');
 }
 
-$stmt = $user_home->runQuery("SELECT * FROM user WHERE userId=:uid");
-$stmt->execute(array(":uid"=>$_SESSION['userSession']));
+$stmt = $superadmin_home->runQuery("SELECT * FROM superadmin WHERE superadminId=:uid");
+$stmt->execute(array(":uid"=>$_SESSION['superadminSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-$profile_user 	= $row['userProfile'];
-$parentID       = $row['uniqueID'];
 
 ?>
 <!DOCTYPE html>
@@ -25,10 +23,10 @@ $parentID       = $row['uniqueID'];
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="../../src/img/<?php echo $logo ?>">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<link rel="stylesheet" href="../../src/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../src/node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../src/node_modules/aos/dist/aos.css">
 	<link rel="stylesheet" href="../../src/css/admin.css?v=<?php echo time(); ?>">
-	<title>Baby</title>
+	<title>Health Center Information</title>
 
 </head>
 <body>
@@ -40,7 +38,7 @@ $parentID       = $row['uniqueID'];
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<i class='bx bxs-baby-carriage' ></i>
-			<span class="text">Vaccine</span>
+			<span class="text">Vaccine System</span>
 		</a>
 		<ul class="side-menu top">
 			<li>
@@ -50,25 +48,25 @@ $parentID       = $row['uniqueID'];
 				</a>
 			</li>
 			<li class="active">
+				<a href="">
+					<i class='bx bxs-ambulance' ></i>
+					<span class="text">Health Center Info</span>
+				</a>
+			</li>
+			<li>
 				<a href="baby">
-					<i class='bx bxs-baby-carriage'></i>
-					<span class="text">My Baby</span>
+					<i class='bx bxs-baby-carriage' ></i>
+					<span class="text">Baby Info</span>
 				</a>
 			</li>
 			<li>
-				<a href="appointment">
-					<i class='bx bxs-calendar-check' ></i>
-					<span class="text">Appointment Information</span>
-				</a>
-			</li>
-			<li>
-				<a href="services">
-                    <i class='bx bxs-wrench' ></i>
-					<span class="text">Services</span>
+				<a href="parents">
+					<i class='bx bxs-user-circle' ></i>
+					<span class="text">Parent/User Info</span>
 				</a>
 			</li>
 		</ul>
-		<ul class="side-menu">
+		<ul class="side-menu top">
 			<li>
 				<a href="settings">
 					<i class='bx bxs-cog' ></i>
@@ -76,7 +74,13 @@ $parentID       = $row['uniqueID'];
 				</a>
 			</li>
 			<li>
-				<a href="authentication/user-signout" class="logout">
+				<a href="logs">
+					<i class='bx bxs-calendar-event'></i>
+					<span class="text">Logs</span>
+				</a>
+			</li>
+			<li>
+				<a href="authentication/superadmin-signout" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Signout</span>
 				</a>
@@ -106,7 +110,7 @@ $parentID       = $row['uniqueID'];
 				<span class="num">8</span>
 			</a>
 			<a href="profile" class="profile" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Profile">
-				<img src="../../src/img/<?php echo $profile_user  ?>">
+				<img src="../../src/img/<?php echo $profile ?>">
 			</a>
 		</nav>
 		<!-- NAVBAR -->
@@ -115,73 +119,42 @@ $parentID       = $row['uniqueID'];
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1>My Baby</h1>
+					<h1>Health Center</h1>
 					<ul class="breadcrumb">
 						<li>
 							<a class="active" href="home">Home</a>
 						</li>
 						<li>|</li>
 						<li>
-							<a href="">My Baby</a>
+							<a href="#">Health Center</a>
 						</li>
 					</ul>
 				</div>
 			</div>
+
             <div class="modal-button">
-				<button type="button" onclick="location.href='add-baby'" class="btn-primary" class="btn btn-primary"><i class='bx bxs-plus-circle'></i> Add Baby</button>
+				<button type="button" onclick="location.href='add-health-center'" class="btn-primary" class="btn btn-primary"><i class='bx bxs-plus-circle'></i> Add Health Center</button>
 			</div>
-            <div class="info-data">
 
-				<?php
+			<div class="table-data">
+				<div class="order">
+					<div class="head">
+						<h3>Information</h3>
+						<i class='bx bx-search' ></i>
+						<i class='bx bx-filter' ></i>
+					</div>
+                    <!-- BODY -->
+                    <section class="data-table">
+                        <div class="searchBx">
+                            <input type="input" placeholder="search . . . . . ." class="search" name="search_box" id="search_box"><button class="searchBtn"><i class="bx bx-search icon"></i></button>
+                        </div>
 
-					$pdoQuery = "SELECT * FROM baby WHERE parentId = :parentId AND account_status = :account_status";
-					$pdoResult = $pdoConnect->prepare($pdoQuery);
-					$pdoResult->execute(array
-					( 
-						":parentId"			=>$parentID,  
-						":account_status"	=> "active" 
-					));	
-					if($pdoResult->rowCount() >= 1)
-					{	
-					
-						while($baby_data=$pdoResult->fetch(PDO::FETCH_ASSOC)){
-							extract($row);
-				?>
+                        <div class="table">
+                        <div id="dynamic_content">
+                        </div>
 
-						<div class="card">
-							<div class="head">
-								<div class="body" onclick="location.href='baby-profile?Id=<?php echo $baby_data['babyId'] ?>'">
-									<img src="../../src/img/<?php echo $baby_data['picture_of_baby']; ?>" alt="baby-profile"> 
-
-									<h2>
-										<?php echo $baby_data['last_name']; ?>, 
-										<?php echo $baby_data['first_name']; ?>
-										<?php 
-											if($baby_data['middle_name'] ==  NULL){
-												echo "";
-											}
-											else{
-												$baby_middle_name = $baby_data['middle_name'];
-												echo ($baby_middle_name[0]).".";
-											}
-										?>
-										<br>
-										<label><?php echo $baby_data['babyId'] ?></label>
-									</h2>
-								</div>
-								<a href="controller/delete-baby-controller.php?Id=<?php echo $baby_data['babyId'] ?>" class="delete-baby"><i class='bx bxs-trash icon'></i></a>
-							</div>
-						</div>				
-
-				<?php
-						}
-					}
-					else{
-				?>
-					<h1 class="no-data">No Baby's Found</h1>
-				<?php
-					}
-				?>
+                    </section>
+				</div>
 			</div>
 		</main>
 		<!-- MAIN -->
@@ -195,28 +168,38 @@ $parentID       = $row['uniqueID'];
 	<script src="../../src/js/admin.js"></script>
 	<script src="../../src/js/loader.js"></script>
 
-
 	<script>
 
-		// Delete Baby
-		$('.delete-baby').on('click', function(e){
-		e.preventDefault();
-		const href = $(this).attr('href')
+        //live search---------------------------------------------------------------------------------------//
+        $(document).ready(function(){
 
-				swal({
-				title: "Remove?",
-				text: "Are you sure do you want to remove this baby?",
-				icon: "info",
-				buttons: true,
-				dangerMode: true,
-			})
-			.then((willSignout) => {
-				if (willSignout) {
-				document.location.href = href;
-				}
-			});
-		})
+        load_data(1);
 
+        function load_data(page, query = '')
+        {
+        $.ajax({
+            url:"data-table/parents-data-table.php",
+            method:"POST",
+            data:{page:page, query:query},
+            success:function(data)
+            {
+            $('#dynamic_content').html(data);
+            }
+        });
+        }
+
+        $(document).on('click', '.page-link', function(){
+        var page = $(this).data('page_number');
+        var query = $('#search_box').val();
+        load_data(page, query);
+        });
+
+        $('#search_box').keyup(function(){
+        var query = $('#search_box').val();
+        load_data(1, query);
+        });
+
+        });
 
 		// Signout
 		$('.logout').on('click', function(e){

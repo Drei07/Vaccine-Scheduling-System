@@ -1,25 +1,19 @@
 <?php
 include_once '../../database/dbconfig2.php';
-require_once 'authentication/user-class.php';
-include_once __DIR__ .'/../superadmin/controller/select-settings-coniguration-controller.php';
+require_once 'authentication/superadmin-class.php';
+include_once 'controller/select-settings-coniguration-controller.php';
 
-$user_home = new USER();
 
-if(!$user_home->is_logged_in())
+$superadmin_home = new SUPERADMIN();
+
+if(!$superadmin_home->is_logged_in())
 {
- $user_home->redirect('../../');
+ $superadmin_home->redirect('../../public/superadmin/signin');
 }
 
-$stmt = $user_home->runQuery("SELECT * FROM user WHERE userId=:uid");
-$stmt->execute(array(":uid"=>$_SESSION['userSession']));
+$stmt = $superadmin_home->runQuery("SELECT * FROM superadmin WHERE superadminId=:uid");
+$stmt->execute(array(":uid"=>$_SESSION['superadminSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
-
-$profile_user 	= $row['userProfile'];
-$first_name     = $row['userFirst_Name'];
-$middle_name    = $row['userMiddle_Name'];
-$last_name      = $row['userLast_Name'];
-$phone_number   = $row['userPhone_Number'];
-$parentID       = $row['uniqueID'];
 
 ?>
 <!DOCTYPE html>
@@ -29,10 +23,10 @@ $parentID       = $row['uniqueID'];
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="../../src/img/<?php echo $logo ?>">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<link rel="stylesheet" href="../../src/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../src/node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../src/node_modules/aos/dist/aos.css">
 	<link rel="stylesheet" href="../../src/css/admin.css?v=<?php echo time(); ?>">
-	<title>Baby | Add Baby</title>
+	<title>Add |    Health Center Information</title>
 
 </head>
 <body>
@@ -44,7 +38,7 @@ $parentID       = $row['uniqueID'];
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<i class='bx bxs-baby-carriage' ></i>
-			<span class="text">Vaccine</span>
+			<span class="text">Vaccine System</span>
 		</a>
 		<ul class="side-menu top">
 			<li>
@@ -54,25 +48,25 @@ $parentID       = $row['uniqueID'];
 				</a>
 			</li>
 			<li class="active">
+				<a href="">
+					<i class='bx bxs-ambulance' ></i>
+					<span class="text">Health Center Info</span>
+				</a>
+			</li>
+			<li>
 				<a href="baby">
-					<i class='bx bxs-baby-carriage'></i>
-					<span class="text">My Baby</span>
+					<i class='bx bxs-baby-carriage' ></i>
+					<span class="text">Baby Info</span>
 				</a>
 			</li>
 			<li>
-				<a href="appointment">
-					<i class='bx bxs-calendar-check' ></i>
-					<span class="text">Appointment Information</span>
-				</a>
-			</li>
-			<li>
-				<a href="services">
-                    <i class='bx bxs-wrench' ></i>
-					<span class="text">Services</span>
+				<a href="parents">
+					<i class='bx bxs-user-circle' ></i>
+					<span class="text">Parent/User Info</span>
 				</a>
 			</li>
 		</ul>
-		<ul class="side-menu">
+		<ul class="side-menu top">
 			<li>
 				<a href="settings">
 					<i class='bx bxs-cog' ></i>
@@ -80,7 +74,13 @@ $parentID       = $row['uniqueID'];
 				</a>
 			</li>
 			<li>
-				<a href="authentication/user-signout" class="logout">
+				<a href="logs">
+					<i class='bx bxs-calendar-event'></i>
+					<span class="text">Logs</span>
+				</a>
+			</li>
+			<li>
+				<a href="authentication/superadmin-signout" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Signout</span>
 				</a>
@@ -110,7 +110,7 @@ $parentID       = $row['uniqueID'];
 				<span class="num">8</span>
 			</a>
 			<a href="profile" class="profile" data-bs-toggle="tooltip" data-bs-placement="bottom" data-bs-title="Profile">
-				<img src="../../src/img/<?php echo $profile_user  ?>">
+				<img src="../../src/img/<?php echo $profile ?>">
 			</a>
 		</nav>
 		<!-- NAVBAR -->
@@ -119,18 +119,18 @@ $parentID       = $row['uniqueID'];
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1>Add Baby</h1>
+					<h1>Health Center</h1>
 					<ul class="breadcrumb">
 						<li>
 							<a class="active" href="home">Home</a>
 						</li>
 						<li>|</li>
-                        <li>
-							<a class="active" href="baby">Baby</a>
+						<li>
+							<a class="active" href="Health-center">Health Center</a>
 						</li>
                         <li>|</li>
                         <li>
-							<a href="">Add Baby</a>
+							<a href="Health-center">Add</a>
 						</li>
 					</ul>
 				</div>
@@ -139,7 +139,7 @@ $parentID       = $row['uniqueID'];
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3>Baby Information</h3>
+						<h3>Information</h3>
 						<i class='bx bx-search' ></i>
 						<i class='bx bx-filter' ></i>
 					</div>
@@ -377,111 +377,40 @@ $parentID       = $row['uniqueID'];
 	<script src="../../src/node_modules/jquery/dist/jquery.min.js"></script>
 	<script src="../../src/js/tooltip.js"></script>
 	<script src="../../src/js/admin.js"></script>
-    <script src="../../src/js/loader.js"></script>
-
+	<script src="../../src/js/loader.js"></script>
 
 	<script>
 
-		// Form
-		(function () {
-			'use strict'
-			var forms = document.querySelectorAll('.needs-validation')
-			Array.prototype.slice.call(forms)
-			.forEach(function (form) {
-				form.addEventListener('submit', function (event) {
-				if (!form.checkValidity()) {
-					event.preventDefault()
-					event.stopPropagation()
-				}
+        //live search---------------------------------------------------------------------------------------//
+        $(document).ready(function(){
 
-				form.classList.add('was-validated')
-				}, false)
-			})
-		})();
+        load_data(1);
 
-		//numbers only
-		$('.numbers').keypress(function(e) {
-		var x = e.which || e.keycode;
-		if ((x >= 48 && x <= 57) || x == 8 ||
-			(x >= 35 && x <= 40) || x == 46)
-			return true;
-		else
-			return false;
-		});
-
-        //birthdate
-        function formatDate(date){
-            var d = new Date(date),
-            month = '' + (d.getMonth() + 1),
-            day = '' + d.getDate(),
-            year = d.getFullYear();
-
-            if (month.length < 2) month = '0' + month;
-            if (day.length < 2) day = '0' + day;
-
-            return [year, month, day].join('-');
-
+        function load_data(page, query = '')
+        {
+        $.ajax({
+            url:"data-table/parents-data-table.php",
+            method:"POST",
+            data:{page:page, query:query},
+            success:function(data)
+            {
+            $('#dynamic_content').html(data);
+            }
+        });
         }
 
-        function getAge(dateString){
-            var birthdate = new Date().getTime();
-            if (typeof dateString === 'undefined' || dateString === null || (String(dateString) === 'NaN')){
-            birthdate = new Date().getTime();
-            }
-            birthdate = new Date(dateString).getTime();
-            var now = new Date().getTime();
-            var n = (now - birthdate)/1000;
-            if (n < 604800){
-            var day_n = Math.floor(n/86400);
-            if (typeof day_n === 'undefined' || day_n === null || (String(day_n) === 'NaN')){
-                return '';
-            }else{
-                return day_n + '' + (day_n > 1 ? '' : '') + '';
-            }
-            } else if (n < 2629743){
-            var week_n = Math.floor(n/604800);
-            if (typeof week_n === 'undefined' || week_n === null || (String(week_n) === 'NaN')){
-                return '';
-            }else{
-                return week_n + '' + (week_n > 1 ? '' : '') + '';
-            }
-            } else if (n < 31562417){
-            var month_n = Math.floor(n/2629743);
-            if (typeof month_n === 'undefined' || month_n === null || (String(month_n) === 'NaN')){
-                return '';
-            }else{
-                return month_n + ' ' + (month_n > 1 ? '' : '') + '';
-            }
-            }else{
-            var year_n = Math.floor(n/31556926);
-            if (typeof year_n === 'undefined' || year_n === null || (String(year_n) === 'NaN')){
-                return year_n = '';
-            }else{
-                return year_n + '' + (year_n > 1 ? '' : '') + '';
-            }
-            }
-        }
-        function getAgeVal(pid){
-            var birthdate = formatDate(document.getElementById("birthdate").value);
-            var count = document.getElementById("birthdate").value.length;
-            if (count=='10'){
-            var age = getAge(birthdate);
-            var str = age;
-            var res = str.substring(0, 1);
-            if (res =='-' || res =='0'){
-                document.getElementById("birthdate").value = "";
-                document.getElementById("age").value = "";
-                $('#birthdate').focus();
-                return false;
-            }else{
-                document.getElementById("age").value = age;
-            }
-            }else{
-            document.getElementById("age").value = "";
-            return false;
-            }
-        };
+        $(document).on('click', '.page-link', function(){
+        var page = $(this).data('page_number');
+        var query = $('#search_box').val();
+        load_data(page, query);
+        });
 
+        $('#search_box').keyup(function(){
+        var query = $('#search_box').val();
+        load_data(1, query);
+        });
+
+        });
 
 		// Signout
 		$('.logout').on('click', function(e){

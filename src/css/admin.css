@@ -26,7 +26,8 @@ ol, ul {
 
 	--light: #F9F9F9;
 	--main: #9053c7;
-	--dark-main:#834eb1;
+	--light-main: #c59de744;
+	--dark-main:#b89ece;
 	--light-blue: #add5fc;
 	--dark-blue: #3d36a3da;
 	--grey: #eee;
@@ -41,6 +42,8 @@ ol, ul {
 	--green: #81D43A;
 	--light-green: #e1f8cc;
 	--dark-red: rgb(209, 4, 4);
+	--dark-active: #15ce1e;
+	--pending: #ffc917;
 }
 
 html {
@@ -64,6 +67,39 @@ body {
 
 .btn-primary:hover {
 	background-color: var(--dark-main);
+}
+
+/* ACTIVE */
+.Y {
+	padding: 4px 10px;
+	border-radius: 5px;
+	font-size: 11px;
+	background-color: var(--dark-active);
+	color: var(--light);
+}
+
+/* PENDING */
+.N {
+	padding: 4px 10px;
+	border-radius: 5px;
+	color: var(--light);
+	font-size: 11px;
+	background-color: var(--pending);
+}
+
+/* VIEW MORE */
+.V {
+	padding: 5px 8px;
+	border-radius: 3px;
+	font-size: 14px;
+	border: none;
+	cursor: pointer;
+	margin-top: -6px;
+	margin-bottom: 4px;
+}
+
+.V a{
+	color: var(--light);
 }
 
 /* Tooltips */
@@ -404,6 +440,7 @@ border-right-color: var(--main);
 	grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
 	grid-gap: 24px;
 	margin-top: 36px;
+
 }
 #content main .box-info li {
 	padding: 24px;
@@ -411,8 +448,14 @@ border-right-color: var(--main);
 	border-radius: 20px;
 	display: flex;
 	align-items: center;
+	cursor: pointer;
 	grid-gap: 24px;
 }
+
+#content main .box-info li:hover {
+	box-shadow: 7px 5px 10px 1px rgba(0,0,0,0.15);
+}
+
 #content main .box-info li .bx {
 	width: 80px;
 	height: 80px;
@@ -580,7 +623,7 @@ border-right-color: var(--main);
 }
 #content main .table-data .order table th {
 	padding-bottom: 12px;
-	font-size: 13px;
+	font-size: 10px;
 	text-align: center;
 	border-bottom: 1px solid var(--grey);
 }
@@ -588,7 +631,6 @@ border-right-color: var(--main);
 	padding: 16px 0;
 }
 #content main .table-data .order table tr td:first-child {
-	display: flex;
 	align-items: center;
 	grid-gap: 12px;
 	padding-left: 6px;
@@ -1418,3 +1460,45 @@ border-right-color: var(--main);
 		min-width: 420px;
 	}
 }
+
+
+
+/* Loader */
+.loader {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100vw;
+	height: 100vh;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background: #FFF;
+	z-index: 1000000000;
+	transition: opacity 1s, visibility 1s;
+  }
+  
+  .loader--hidden {
+	opacity: 0;
+	visibility: hidden;
+  }
+  
+  .loader::after {
+	content: "";
+	width: 75px;
+	height: 75px;
+	border: 15px solid #dddddd;
+	border-top-color: var(--main);
+	border-radius: 50%;
+	animation: loading 1s ease infinite;
+  }
+  
+  @keyframes loading {
+	from {
+	  transform: rotate(0turn);
+	}
+	to {
+	  transform: rotate(1turn);
+	}
+  }
+  
