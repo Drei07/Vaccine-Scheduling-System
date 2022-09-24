@@ -2,8 +2,16 @@
 class Database
 {
      
+    // localhost----------------------------------------
+    // private $host = "localhost";
+    // private $db_name = "vaccine_ms";
+    // private $username = "root";
+    // private $password = "";
+    // public $conn;
+     
+    // Live---------------------------------------------
     private $host = "localhost";
-    private $db_name = "u867039073_infant";
+    private $db_name = "u867039073_infants";
     private $username = "u867039073_infant";
     private $password = "Andreishania12";
     public $conn;
