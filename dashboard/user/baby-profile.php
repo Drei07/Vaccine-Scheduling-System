@@ -172,8 +172,6 @@ $updated_at                          = $baby_data["updated_at"];
 				<div class="order">
 					<div class="head">
 						<h3>Baby Information</h3>
-						<i class='bx bx-search' ></i>
-						<i class='bx bx-filter' ></i>
 					</div>
                     <!-- BODY -->
                     <section class="profile-form">

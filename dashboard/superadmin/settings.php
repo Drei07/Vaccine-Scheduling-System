@@ -136,8 +136,6 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 				<div class="order">
 					<div class="head">
 						<h3>Configuration</h3>
-						<i class='bx bx-search' ></i>
-						<i class='bx bx-filter' ></i>
 					</div>
                     <!-- BODY -->
                     <section class="data-form">
