@@ -639,7 +639,7 @@ border-right-color: var(--main);
 }
 #content main .table-data .head h3 {
 	margin-right: auto;
-	font-size: 24px;
+	font-size: 20px;
 	font-weight: 600;
 }
 #content main .table-data .head .bx {

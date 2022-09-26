@@ -139,226 +139,46 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3>Information</h3>
+						<h3>Add</h3>
 					</div>
                     <!-- BODY -->
                         <section class="data-form">
                         <div class="header"></div>
                         <div class="registration">
-                            <form action="controller/add-baby-controller.php" method="POST" class="row gx-5 needs-validation" enctype="multipart/form-data" name="form" onsubmit="return validate()"  novalidate style="overflow: hidden;">
+                            <form action="controller/add-health-center-controller.php" method="POST" class="row gx-5 needs-validation" enctype="multipart/form-data" name="form" onsubmit="return validate()"  novalidate style="overflow: hidden;">
                                 <div class="row gx-5 needs-validation">
                                     <!-- Baby Information -->
 
                                     <div class="col-md-6">
-                                        <label for="first_name" class="form-label">First Name<span> *</span></label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" autocomplete="off" name="FName" id="first_name" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" required>
+                                        <label for="HCenter" class="form-label">Name of Health Center<span> *</span></label>
+                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" maxlength="20" autocomplete="off" name="health_center_name" id="HCenter" required>
                                         <div class="invalid-feedback">
-                                        Please provide a First Name.
+                                        Please provide a Name of Health Center.
                                         </div>
                                     </div>
 
                                     <div class="col-md-6">
-                                        <label for="middle_name" class="form-label">Middle Name</label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" autocomplete="off" name="MName" id="middle_name" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)">
-                                        <div class="invalid-feedback">
-                                        Please provide a Middle Name.
-                                        </div>
+                                            <label for="email" class="form-label">Email<span> *</span></label>
+                                            <input type="email" class="form-control" autocapitalize="off" autocomplete="off" name="Email" id="email" required placeholder="Ex. juan@email.com">
+                                            <div class="invalid-feedback">
+                                            Please provide a valid Email.
+                                            </div>
                                     </div>
 
-                                    <div class="col-md-6">
-                                        <label for="last_name" class="form-label">Last Name<span> *</span></label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" autocomplete="off" name="LName" id="last_name" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" required >
-                                        <div class="invalid-feedback">
-                                        Please provide a Last Name.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="sex" class="form-label">Sex<span> *</span></label>
-                                        <select class="form-select form-control"  name="Sex"  maxlength="6" autocomplete="off" id="sex" required>
-                                        <option selected disabled value="">Select...</option>
-                                        <option value="MALE">MALE</option>
-                                        <option value="FEMALE ">FEMALE</option>
-                                        </select>
-                                        <div class="invalid-feedback">
-                                            Please select a valid Sex.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="birthdate" class="form-label">Birth Date<span> *</span></label>
-                                        <input type="date" class="form-control" autocapitalize="off" autocomplete="off" name="BirthDate" id="birthdate" maxlength="10" pattern="^[a-zA-Z0-9]+@gmail\.com$"  required placeholder="Ex: mm/dd/yyyy" onkeyup="getAgeVal(0)" onblur="getAgeVal(0);">
-                                        <div class="invalid-feedback">
-                                        Please provide a Birth Date.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6" style="display: none;">
-                                        <label for="age" class="form-label">Age<span style="font-size:9px; color:red;">( auto-generated )</span></label>
-                                        <input type="number" class="form-control" autocapitalize="off" autocomplete="off"  name="Age" id="age" required >
-                                        <div class="invalid-feedback">
-                                        Please provide your Age.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="Pbirth" class="form-label">Place Of Birth<span> *</span></label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" maxlength="20" autocomplete="off" name="PBirth" id="Pbirth" required>
-                                        <div class="invalid-feedback">
-                                        Please provide a Place of Birth.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="NHospital" class="form-label">Name of Hospital<span> *</span></label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" maxlength="20" autocomplete="off" name="name_hospital" id="NHospital" required>
-                                        <div class="invalid-feedback">
-                                        Please provide a Name of Hospital.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="BWeight" class="form-label">Birth Weight<span> *</span></label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" maxlength="20" autocomplete="off" name="birth_weight" id="BWeight" required>
-                                        <div class="invalid-feedback">
-                                        Please provide a Birth Weight.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="BHeight" class="form-label">Birth Height<span> *</span></label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" maxlength="20" autocomplete="off" name="birth_height" id="BHeight" required>
-                                        <div class="invalid-feedback">
-                                        Please provide a Birth Height.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="HCircumference" class="form-label">Head Circumference<span> *</span></label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" maxlength="20" autocomplete="off" name="head_circumference" id="HCircumference" required>
-                                        <div class="invalid-feedback">
-                                        Please provide a Head Circumference.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="CCircumference" class="form-label">Chest Circumference<span> *</span></label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" maxlength="20" autocomplete="off" name="chest_circumference" id="CCircumference" required>
-                                        <div class="invalid-feedback">
-                                        Please provide a Chest Circumference.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="DMarks" class="form-label">Distinguishing Marks</label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" maxlength="20" autocomplete="off" name="distinguishing_marks" id="DMarks">
-                                        <div class="invalid-feedback">
-                                        Please provide a Distinguishing Marks.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="Obste" class="form-label">Obstetrician<span> *</span></label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" maxlength="20" autocomplete="off" name="obstetrician" id="Obstetrician" required>
-                                        <div class="invalid-feedback">
-                                        Please provide a Obstetrician.
-                                        </div>
-                                    </div>
-
-                                    <!-- Mother Information -->
-                                    <label class="form-label" style="text-align: left; padding-top: 2rem; padding-bottom: 2rem; font-size: 1rem; font-weight: bold;">Mother Information<span> (maiden name)</span></label>
-
-                                    <div class="col-md-6">
-                                        <label for="mother_first_name" class="form-label">First Name<span> *</span></label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" value="<?php echo $first_name ?>" onkeydown="return false;" autocomplete="off" name="Mother-FName" id="mother_first_name" required onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" >
-                                        <div class="invalid-feedback">
-                                        Please provide a First Name.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="mother_middle_name" class="form-label">Middle Name</label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" value="<?php echo $middle_name ?>" onkeydown="return false;" autocomplete="off" name="Mother-MName" id="mother_middle_name" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)">
-                                        <div class="invalid-feedback">
-                                        Please provide a Middle Name.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="mother_last_name" class="form-label">Last Name<span> *</span></label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" value="<?php echo $last_name ?>" onkeydown="return false;" autocomplete="off" name="Mother-LName" id="mother_last_name" required onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)"  >
-                                        <div class="invalid-feedback">
-                                        Please provide a Last Name.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6" >
-                                        <label for="mother_phone_number" class="form-label">Phone Number</label>
-                                        <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping">+63</span>
-                                        <input type="text" class="form-control numbers"  autocapitalize="off" inputmode="numeric" value="<?php echo $phone_number ?>" onkeydown="return false;"  autocomplete="off" name="Mother-PNumber" id="mother_phone_number" minlength="10" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  placeholder="10-digit number">
-                                        </div>
-                                    </div>
-
-                                    <!-- Father Information -->
-                                    <label class="form-label" style="text-align: left; padding-top: 2rem; padding-bottom: 2rem; font-size: 1rem; font-weight: bold;">Father Information</label>
-
-                                    <div class="col-md-6">
-                                        <label for="father_first_name" class="form-label">First Name</label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" autocomplete="off" name="Father-FName" id="father_first_name"  onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)" >
-                                        <div class="invalid-feedback">
-                                        Please provide a First Name.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="father_middle_name" class="form-label">Middle Name</label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" autocomplete="off" name="Father-MName" id="father_middle_name" onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)">
-                                        <div class="invalid-feedback">
-                                        Please provide a Middle Name.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6">
-                                        <label for="father_last_name" class="form-label">Last Name</label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" autocomplete="off" name="Father-LName" id="father_last_name"  onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)"  >
-                                        <div class="invalid-feedback">
-                                        Please provide a Last Name.
-                                        </div>
-                                    </div>
-
-                                    <div class="col-md-6" >
-                                        <label for="father_phone_number" class="form-label">Phone Number</label>
-                                        <div class="input-group flex-nowrap">
-                                        <span class="input-group-text" id="addon-wrapping">+63</span>
-                                        <input type="text" class="form-control numbers"  autocapitalize="off" inputmode="numeric" autocomplete="off" name="Father-PNumber" id="father_phone_number"  minlength="10" maxlength="10" oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"  placeholder="10-digit number">
-                                        </div>
-                                    </div>
-
-                                    
                                     <label class="form-label" style="text-align: left; padding-top: .5rem; padding-bottom: 1rem; font-size: 1rem; font-weight: bold;">Add Image</label>
 
                                     <div class="col-md-12">
-                                        <label for="logo" class="form-label">Upload Picture of Baby<span> *</span></label>
-                                        <input type="file" class="form-control" name="baby_image" id="logo" style="height: 33px ;" required>
+                                        <label for="logo" class="form-label">Upload Profile Picture</label>
+                                        <input type="file" class="form-control" name="health_center_image" id="logo" style="height: 33px ;">
                                         <div class="invalid-feedback">
-                                        Please upload Picture of Baby.
-                                        </div>
-                                    </div>
-
-                                    <!-- parentID -->
-
-                                    <div class="col-md-6" style="opacity: 0;">
-                                        <label for="parentId" class="form-label" ></label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" autocomplete="off" name="parentId" id="parentId" value="<?php echo $parentID ?>"  onkeypress="return (event.charCode > 64 && event.charCode < 91) || (event.charCode > 96 && event.charCode < 123) || (event.charCode==32)"  >
-                                        <div class="invalid-feedback">
+                                        Please upload Profile Picture.
                                         </div>
                                     </div>
 
                                 </div>
 
                                 <div class="addBtn">
-                                    <button type="submit" class="btn-primary" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Submit</button>
+                                    <button type="submit" class="btn-primary" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Add</button>
                                 </div>
                             </form>
                         </div>
@@ -378,6 +198,24 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 	<script src="../../src/js/loader.js"></script>
 
 	<script>
+
+        // Form
+		(function () {
+			'use strict'
+			var forms = document.querySelectorAll('.needs-validation')
+			Array.prototype.slice.call(forms)
+			.forEach(function (form) {
+				form.addEventListener('submit', function (event) {
+				if (!form.checkValidity()) {
+					event.preventDefault()
+					event.stopPropagation()
+				}
+
+				form.classList.add('was-validated')
+				}, false)
+			})
+		})();
+
 
         //live search---------------------------------------------------------------------------------------//
         $(document).ready(function(){

@@ -176,7 +176,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
         function load_data(page, query = '')
         {
         $.ajax({
-            url:"data-table/parents-data-table.php",
+            url:"data-table/health-center-data-table.php",
             method:"POST",
             data:{page:page, query:query},
             success:function(data)

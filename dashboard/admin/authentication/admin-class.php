@@ -34,22 +34,21 @@ class ADMIN
   return $stmt;
  }
  
- public function register($employeeId,$position,$first_name,$middle_name,$last_name,$email,$upass,$tokencode)
+ public function register($health_center_id,$health_center_name,$email,$upass,$tokencode,$profile)
  {
   try
   {       
    $password = md5($upass);
-   $stmt = $this->conn->prepare("INSERT INTO admin(employeeId,adminPosition,adminFirst_Name,adminMiddle_Name,adminLast_Name,adminEmail,adminPassword,tokencode) 
-                                        VALUES(:employeeId,:adminPosition,:adminFirst_Name,:adminMiddle_Name,:adminLast_Name,:adminEmail,:adminPassword,:tokencode)");
+   $stmt = $this->conn->prepare("INSERT INTO admin(health_center_id,health_center_name,adminEmail,adminPassword,tokencode,adminProfile) 
+                                        VALUES(:health_center_id,:health_center_name,:adminEmail,:adminPassword,:tokencode,:adminProfile)");
    
-   $stmt->bindparam(":employeeId",$employeeId);
-   $stmt->bindparam(":adminPosition",$position);
-   $stmt->bindparam(":adminFirst_Name",$first_name);
-   $stmt->bindparam(":adminMiddle_Name",$middle_name);
-   $stmt->bindparam(":adminLast_Name",$last_name);
+
+   $stmt->bindparam(":health_center_id",$health_center_id);
+   $stmt->bindparam(":health_center_name",$health_center_name);
    $stmt->bindparam(":adminEmail",$email);
    $stmt->bindparam(":adminPassword",$password);
    $stmt->bindparam(":tokencode",$tokencode);
+   $stmt->bindparam(":adminProfile",$profile);
    $stmt->execute(); 
    return $stmt;
   }
@@ -78,7 +77,7 @@ class ADMIN
       DATE_DEFAULT_TIMEZONE_SET('Asia/Manila');
       $activity = "Has successfully signed in";
       $date_now = date("Y-m-d h:i:s A");
-      $user = "Customer $Uname";
+      $user = "Admin $Uname";
   
       $stmt = $this->conn->prepare("INSERT INTO tb_logs (user, email, activity, date) VALUES (:user, :email, :activity, :date)");
       $stmt->execute(array(":user"=>$user,":email"=>$email,":activity"=>$activity,":date"=>$date_now));

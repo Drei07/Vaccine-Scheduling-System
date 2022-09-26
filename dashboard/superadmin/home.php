@@ -136,7 +136,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 					<i class='bx bxs-ambulance' ></i>
 					<span class="text">
 							<?php
-								$pdoQuery = "SELECT * FROM 	user";
+								$pdoQuery = "SELECT * FROM admin";
 								$pdoResult1 = $pdoConnect->prepare($pdoQuery);
 								$pdoResult1->execute();
 
@@ -154,7 +154,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 					<i class='bx bxs-baby-carriage'></i>
 					<span class="text">
 					<?php
-								$pdoQuery = "SELECT * FROM 	baby";
+								$pdoQuery = "SELECT * FROM  baby";
 								$pdoResult1 = $pdoConnect->prepare($pdoQuery);
 								$pdoResult1->execute();
 

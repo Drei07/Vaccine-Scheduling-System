@@ -128,25 +128,58 @@ $profile_user 	= $row['userProfile'];
 			</div>
 
 			<ul class="box-info">
-				<li>
-					<i class='bx bxs-user-account' ></i>
+				<li onclick="location.href='appointment'">
+					<i class='bx bxs-calendar'></i>
 					<span class="text">
-						<h3>13</h3>
-						<p>Admin</p>
+							<?php
+								$pdoQuery = "SELECT * FROM admin";
+								$pdoResult1 = $pdoConnect->prepare($pdoQuery);
+								$pdoResult1->execute();
+
+								$count = $pdoResult1->rowCount();
+
+								echo
+								"
+									<h3>$count</h3>
+								";
+							?>
+						<p>Appointment</p>
 					</span>
 				</li>
-				<li>
-					<i class='bx bxs-ambulance' ></i>
-					<span class="text">
-						<h3>15</h3>
-						<p>Health Center</p>
-					</span>
-				</li>
-				<li>
+				<li onclick="location.href='baby'">
 					<i class='bx bxs-baby-carriage'></i>
 					<span class="text">
-						<h3>200</h3>
+					<?php
+								$pdoQuery = "SELECT * FROM  baby";
+								$pdoResult1 = $pdoConnect->prepare($pdoQuery);
+								$pdoResult1->execute();
+
+								$count = $pdoResult1->rowCount();
+
+								echo
+								"
+									<h3>$count</h3>
+								";
+							?>
 						<p>Baby</p>
+					</span>
+				</li>
+				<li onclick="location.href='health-center'">
+					<i class='bx bxs-ambulance' ></i>
+					<span class="text">
+					<?php
+								$pdoQuery = "SELECT * FROM 	admin";
+								$pdoResult1 = $pdoConnect->prepare($pdoQuery);
+								$pdoResult1->execute();
+
+								$count = $pdoResult1->rowCount();
+
+								echo
+								"
+									<h3>$count</h3>
+								";
+							?>
+						<p>Health Center</p>
 					</span>
 				</li>
 			</ul>
