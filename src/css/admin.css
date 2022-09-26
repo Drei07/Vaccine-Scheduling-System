@@ -581,6 +581,38 @@ border-right-color: var(--main);
 	cursor: pointer;
 }
 
+@media screen and (max-width:570px){
+	#content main .card .head{
+		padding: 8px;
+		border-radius: 10px
+	}
+	#content main .card .head img {
+		max-width: 40px;
+		min-height: 40px;
+		margin-right: 10px;
+	}
+	#content main .card .head h2 {
+		font-size: 10px;
+		margin-right: 10px;
+	}
+	#content main .card .head h2 label{
+		font-size: 8px;
+	}
+	#content main .card .head .icon {
+		font-size: 10px;
+		padding: 6px;
+		border-radius: 5px;
+	}
+	#content main .head-title .left h1{
+		font-size: 30px;
+	}
+	#content main .modal-button button {
+		padding: 5px 13px;
+		border-radius: 8px;
+		font-size: 12px;
+	}
+}
+
 
 
 

@@ -3,18 +3,18 @@ class Database
 {
      
     // localhost----------------------------------------
-    // private $host = "localhost";
-    // private $db_name = "vaccine_ms";
-    // private $username = "root";
-    // private $password = "";
-    // public $conn;
+    private $host = "localhost";
+    private $db_name = "vaccine_ms";
+    private $username = "root";
+    private $password = "";
+    public $conn;
      
     // Live---------------------------------------------
-    private $host = "localhost";
-    private $db_name = "u867039073_infant";
-    private $username = "u867039073_infant";
-    private $password = "Andreishania12";
-    public $conn;
+    // private $host = "localhost";
+    // private $db_name = "u867039073_infant";
+    // private $username = "u867039073_infant";
+    // private $password = "Andreishania12";
+    // public $conn;
      
     public function dbConnection()
  {
