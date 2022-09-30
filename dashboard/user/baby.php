@@ -128,7 +128,7 @@ $parentID       = $row['uniqueID'];
 				</div>
 			</div>
             <div class="modal-button">
-				<button type="button" onclick="location.href='add-baby'" class="btn-primary" class="btn btn-primary"><i class='bx bxs-plus-circle'></i> Add Baby</button>
+				<button type="button" onclick="location.href='add-baby'" class="button"><i class='bx bxs-plus-circle'></i> Add Baby</button>
 			</div>
             <div class="info-data">
 

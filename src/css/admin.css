@@ -27,7 +27,7 @@ ol, ul {
 	--light: #F9F9F9;
 	--main: #9053c7;
 	--light-main: #c59de744;
-	--dark-main:#b89ece;
+	--dark-main:#966abd;
 	--light-blue: #add5fc;
 	--dark-blue: #3d36a3da;
 	--grey: #eee;
@@ -61,13 +61,26 @@ body {
 	overflow-x: hidden;
 }
 
-.btn-primary {
+.button {
 	background-color: var(--main);
+	border: none;
+	color: var(--light);
 }
 
-.btn-primary:hover {
+.button:hover {
 	background-color: var(--dark-main);
 }
+
+.button-cancel{
+	color: #726E6D;
+}
+
+.button-cancel:hover{
+	background-color: var(--main);
+	border: none;
+	color: var(--light);
+}
+
 
 /* ACTIVE */
 .Y {
@@ -786,6 +799,14 @@ border-right-color: var(--main);
 	font-size: 13px;
 }
 
+#content main .table-data .order .data-form .row .col-md-12 {
+	padding-bottom: .9rem;
+}
+
+#content main .table-data .order .data-form .row .col-md-12 input {
+	font-size: 13px;
+}
+
 #content main .table-data .order .data-form .row label span {
 	color: red;
 	font-size: 13px;
@@ -1059,6 +1080,13 @@ border-right-color: var(--main);
 } 
 
 #content main .table-data .order .profile-form .profile .row .col-md-6 .input-group-text{
+    font-weight: 600; 
+    color: var(--light);
+	background-color: var(--main);
+	font-size: 13px;
+}
+
+#content main .table-data .order .profile-form .profile .row .col-md-12 .input-group-text{
     font-weight: 600; 
     color: var(--light);
 	background-color: var(--main);
@@ -1533,5 +1561,15 @@ border-right-color: var(--main);
 	to {
 	  transform: rotate(1turn);
 	}
+  }
+
+  .calendar{
+	padding: 1rem;
+	border-radius: 20px;
+  }
+  .calendar .btn-primary{
+	background-color: var(--main);
+	border: 1px solid #FFF;
+	border-radius: 10px;
   }
   
