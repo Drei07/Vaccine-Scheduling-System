@@ -34,6 +34,9 @@ $Edate                      = $appointment_data['end_datetime'];
 $services                   = $appointment_data["title"];
 $description                = $appointment_data["description"];	
 
+$StartDate = date("F d, Y h:i A",strtotime($appointment_data['start_datetime']));
+$EndDate = date("F d, Y h:i A",strtotime($appointment_data['start_datetime']));
+
 $appointment_updated_at     = $appointment_data["updated_at"];
 
 // BABY
@@ -218,12 +221,12 @@ $health_centerId	= $health_center_data["health_center_id"];
 
                                     <div class="col-md-12">
 										<label for="last_name" class="form-label" >Start Date: </label>
-                                        <h1><?php echo $Sdate  ?></h1>
+                                        <h1><?php echo $StartDate  ?></h1>
 									</div>
 
                                     <div class="col-md-12">
 										<label for="last_name" class="form-label" >End Date: </label>
-                                        <h1><?php echo $Edate  ?></h1>
+                                        <h1><?php echo $EndDate  ?></h1>
 									</div>
 
 								</div>
