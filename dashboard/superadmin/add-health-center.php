@@ -38,7 +38,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<i class='bx bxs-baby-carriage' ></i>
-			<span class="text">Vaccine System</span>
+			<span class="text">Infant</span>
 		</a>
 		<ul class="side-menu top">
 			<li>
@@ -178,7 +178,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                                 </div>
 
                                 <div class="addBtn">
-                                    <button type="submit" class="btn-primary" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Add</button>
+                                    <button type="submit" class="button" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Add</button>
                                 </div>
                             </form>
                         </div>

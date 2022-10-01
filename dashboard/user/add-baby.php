@@ -44,7 +44,7 @@ $parentID       = $row['uniqueID'];
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<i class='bx bxs-baby-carriage' ></i>
-			<span class="text">Vaccine</span>
+			<span class="text">Infant</span>
 		</a>
 		<ul class="side-menu top">
 			<li>
@@ -62,7 +62,7 @@ $parentID       = $row['uniqueID'];
 			<li>
 				<a href="appointment">
 					<i class='bx bxs-calendar-check' ></i>
-					<span class="text">Appointment Information</span>
+					<span class="text">Appointmen</span>
 				</a>
 			</li>
 			<li>
@@ -360,7 +360,7 @@ $parentID       = $row['uniqueID'];
                                 </div>
 
                                 <div class="addBtn">
-                                    <button type="submit" class="btn-primary" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Submit</button>
+                                    <button type="submit" class="button" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Submit</button>
                                 </div>
                             </form>
                         </div>

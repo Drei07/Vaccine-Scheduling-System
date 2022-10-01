@@ -76,7 +76,7 @@ $updated_at                          = $baby_data["updated_at"];
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<i class='bx bxs-baby-carriage' ></i>
-			<span class="text">Vaccine</span>
+			<span class="text">Infant</span>
 		</a>
 		<ul class="side-menu top">
 			<li>
@@ -94,7 +94,7 @@ $updated_at                          = $baby_data["updated_at"];
 			<li>
 				<a href="appointment">
 					<i class='bx bxs-calendar-check' ></i>
-					<span class="text">Appointment Information</span>
+					<span class="text">Appointment</span>
 				</a>
 			</li>
 			<li>

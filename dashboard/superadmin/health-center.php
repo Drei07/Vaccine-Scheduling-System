@@ -38,7 +38,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<i class='bx bxs-baby-carriage' ></i>
-			<span class="text">Vaccine System</span>
+			<span class="text">Infant</span>
 		</a>
 		<ul class="side-menu top">
 			<li>
@@ -133,7 +133,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 			</div>
 
             <div class="modal-button">
-				<button type="button" onclick="location.href='add-health-center'" class="btn-primary" class="btn btn-primary"><i class='bx bxs-plus-circle'></i> Add Health Center</button>
+				<button type="button" onclick="location.href='add-health-center'" class="button"><i class='bx bxs-plus-circle'></i> Add Health Center</button>
 			</div>
 
 			<div class="table-data">

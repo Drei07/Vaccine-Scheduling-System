@@ -37,7 +37,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<i class='bx bxs-baby-carriage' ></i>
-			<span class="text">Vaccine System</span>
+			<span class="text">Infant</span>
 		</a>
 		<ul class="side-menu top">
 			<li class="active">

@@ -87,7 +87,10 @@ body {
 	padding: 4px 10px;
 	border-radius: 5px;
 	font-size: 11px;
-	background-color: var(--dark-active);
+	color: var(--light);
+}
+
+.Y:hover{
 	color: var(--light);
 }
 
@@ -97,9 +100,12 @@ body {
 	border-radius: 5px;
 	color: var(--light);
 	font-size: 11px;
-	background-color: var(--pending);
+
 }
 
+.N:hover{
+	color: var(--light);
+}
 /* VIEW MORE */
 .V {
 	padding: 5px 8px;
@@ -142,10 +148,10 @@ border-right-color: var(--main);
 	position: fixed;
 	top: 0;
 	left: -20;
-	width: 280px;
+	width: 200px;
 	height: 100%;
 	background: var(--light);
-	z-index: 2000;
+	z-index: 1000;
 	font-family: var(--lato);
 	transition: .3s ease;
 	overflow-x: hidden;
@@ -255,8 +261,8 @@ border-right-color: var(--main);
 /* CONTENT */
 #content {
 	position: relative;
-	width: calc(100% - 280px);
-	left: 280px;
+	width: calc(100% - 200px);
+	left: 200px;
 	transition: .3s ease;
 }
 #sidebar.hide ~ #content {
@@ -985,6 +991,11 @@ border-right-color: var(--main);
 	border-radius: 50%;
 }
 
+#content main .table-data .order .profile-form .profile .profile-img  .delete-appointment {
+	width: 100%;
+}
+
+
 #content main .table-data .order .profile-form .profile .profile-img  .delete i{
 	font-size: 20px;
 	color: var(--light);
@@ -1078,6 +1089,16 @@ border-right-color: var(--main);
 	font-weight: 500;
 
 } 
+
+
+
+#content main .table-data .order .profile-form .profile .row h1 {
+	margin-left: 2rem;
+	padding: 10px;
+	padding-bottom: 15px;
+	font-weight: bold;
+	font-size: 20px;
+}
 
 #content main .table-data .order .profile-form .profile .row .col-md-6 .input-group-text{
     font-weight: 600; 
@@ -1308,10 +1329,10 @@ border-right-color: var(--main);
   }
   
   .class-modal .modal-content .header {
-  background-color: var(--main);
-  height: 50px;
-  border-top-left-radius: 10px;
-  border-top-right-radius: 10px;
+	background-color: var(--main);
+	height: 25px;
+	border-top-left-radius: 10px;
+	border-top-right-radius: 10px;
   }
   
   
@@ -1322,19 +1343,18 @@ border-right-color: var(--main);
   }
   
   .class-modal .modal-content .modal-body {
-  padding: 2rem;
-  margin: 2rem;
-  overflow: auto;
+	padding: 1rem;
+	margin: 2rem;
   }
   
   .class-modal .modal-content .modal-body .row>* {
-  padding-right: 0px;
-  font-size: 13px;
+	padding-right: 0px;
+	font-size: 13px;
   }
   
   .class-modal .modal-content .modal-body .row .form-control {
 	width: 100%;
-  height: 40px;
+ 	height: 40px;
 	outline: none;
 	color: var(--dark);
 	font-size: 13px;
@@ -1349,128 +1369,36 @@ border-right-color: var(--main);
   .class-modal .modal-content .modal-body .col-md-6 input {
   font-size: 13px;
   }
+
+  .class-modal .modal-content .modal-body .col-md-12 {
+	padding-bottom: .9rem;
+	}
+	
+	.class-modal .modal-content .modal-body .col-md-12 input {
+	font-size: 13px;
+	}
   
   .class-modal .modal-content .modal-body label span {
-  color: red;
-  font-size: 13px;
-  font-weight: bold;
+	color: red;
+	font-size: 13px;
+	font-weight: bold;
   }
   
   .class-modal .modal-content .modal-body .addBtn {
-  border-top: none;
-  display: flex;
-  padding-top: 1rem;
-  justify-content: right;
+	border-top: none;
+	display: flex;
+	padding-top: 1rem;
+	justify-content: right;
   }
   
   .class-modal .modal-content .modal-body .addBtn button{
-  padding: 8px 30px;
-  border: none;
-  border-radius: 7px;
-  font-weight: 600;
-  font-size: 13px;
-  margin-right: 1.5rem;
-  }
-  
-  /* SUBJECT CLASS MODAL */
-  
-  .class-modal .modal-content .modal-body .data-table{
-  display: block;
-	text-align: center;
-  }
-  
-  .class-modal .modal-content .modal-body .data-table .searchBx{
-	display: flex;
-  justify-content: right;
-  padding-bottom: 1rem;
-  
-  }
-  .class-modal .modal-content .modal-body .data-table .searchBx a{
-  background-color: var(--main);
-  color: var(--light);
-  padding: 8px 20px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: 500;
-  font-size: 14px;
-  }
-  
-  .class-modal .modal-content .modal-body .data-table .searchBx a:hover {
-  background-color: var(--dark-main);
-  color: var(--light);
-  }
-  
-  .class-modal .modal-content .modal-body .data-table .searchBx .search{
-  box-shadow: 4px 4px 16px rgba(0, 0, 0, .1);
-	background-color: var(--light);
-	height: 35px;
-  border-style: none;
-	width: 270px;
-	font-size: 12px;
-	padding-left: 20px;
-	padding-right: 40px;
+	padding: 8px 30px;
+	border: none;
 	border-radius: 7px;
-	transition: all 0.3s ease;
-  }
-  
-  .class-modal .modal-content .modal-body .data-table .searchBx .searchBtn{
-	background-color: var(--main);
-  border-color: var(--main);
-	border-top-right-radius: 7px;
-  border-bottom-right-radius: 7px;
-  border-style: none;
-	width:35px;
-  margin-left: -35px;
-  color: var(--light-green);
-  }
-  
-  .class-modal .modal-content .modal-body .data-table .qrdataTable{
-	display: flex;
-	position: absolute;
-  
-  }
-  
-  .class-modal .modal-content .modal-body .data-table .table{
-  overflow-x: auto;
-	overflow-y: auto;
+	font-weight: 600;
 	font-size: 13px;
-	margin-right: 3rem;
-	height: 100%;
-	width: 100%;
-	background-color: transparent;
-	border-radius: 10px;
-	font-style: 50rem;
+	margin-right: 1.5rem;
   }
-  
-  .class-modal .modal-content .modal-body .data-table .table td{
-  padding: 15px 9px;
-  width:auto;
-  padding-bottom: 5px;
-	text-align: center;
-  background-color: var(--light);
-  font-weight: 600;
-  color: var(--light-black);
-  }
-  
-  
-  .class-modal .modal-content .modal-body .data-table .table thead {
-	font-weight: 400;
-  font-size: 11px;
-	--bs-table-bg: var(--main);
-  color: var(--light);
-  vertical-align: middle;
-  }
-  
-  .table>:not(:first-child) {
-  border-top: none;
-  }
-  .class-modal .modal-content .modal-body .data-table .table h1 {
-  text-align: center;
-  font-size: 1.5rem;
-  padding: 5rem 0;
-  }
-  
-  
   /* END OF MODALS */
 
 
@@ -1572,4 +1500,6 @@ border-right-color: var(--main);
 	border: 1px solid #FFF;
 	border-radius: 10px;
   }
+  
+
   

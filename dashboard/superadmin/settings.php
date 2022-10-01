@@ -38,7 +38,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<i class='bx bxs-baby-carriage' ></i>
-			<span class="text">Vaccine System</span>
+			<span class="text">Infant</span>
 		</a>
 		<ul class="side-menu top">
 			<li>
@@ -181,7 +181,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                                 </div>
 
                                 <div class="addBtn">
-                                    <button type="submit" class="btn-primary" name="btn-update" id="btn-update" onclick="return IsEmpty(); sexEmpty();">Update</button>
+                                    <button type="submit" class="button" name="btn-update" id="btn-update" onclick="return IsEmpty(); sexEmpty();">Update</button>
                                 </div>
                             </form>
                         </div>
@@ -208,7 +208,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                                 </div>
 
                                 <div class="addBtn" style="padding-top: 2rem;">
-                                    <button type="submit" class="btn-primary " name="btn-update" id="btn-update" onclick="return IsEmpty(); sexEmpty();">Update</button>
+                                    <button type="submit" class="button " name="btn-update" id="btn-update" onclick="return IsEmpty(); sexEmpty();">Update</button>
                                 </div>
                             </form>
                         </div>
@@ -243,7 +243,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                                 </div>
 
                                 <div class="addBtn">
-                                    <button type="submit" class="btn-primary" name="btn-update" id="btn-update" onclick="return IsEmpty(); sexEmpty();">Update</button>
+                                    <button type="submit" class="button" name="btn-update" id="btn-update" onclick="return IsEmpty(); sexEmpty();">Update</button>
                                 </div>
                             </form>
                         </div>
@@ -278,7 +278,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
                                 </div>
 
                                 <div class="addBtn">
-                                    <button type="submit" class="btn-primary" name="btn-update" id="btn-update" onclick="return IsEmpty(); sexEmpty();">Update</button>
+                                    <button type="submit" class="button" name="btn-update" id="btn-update" onclick="return IsEmpty(); sexEmpty();">Update</button>
                                 </div>
                             </form>
                         </div>

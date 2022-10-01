@@ -15,6 +15,20 @@ $stmt->execute(array(":uid"=>$_SESSION['userSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $profile_user 	= $row['userProfile'];
+$parentID       = $row['uniqueID'];
+
+
+$pdoQuery = "SELECT * FROM appointment_list WHERE user_id = :user_id";
+$pdoResult = $pdoConnect->prepare($pdoQuery);
+$pdoExec = $pdoResult->execute(array(":user_id" => $parentID));
+$sched_res = [];
+
+foreach($pdoResult->fetchAll(PDO::FETCH_ASSOC) as $schedue_row){
+    $schedue_row['sdate'] = date("F d, Y h:i A",strtotime($schedue_row['start_datetime']));
+    $schedue_row['edate'] = date("F d, Y h:i A",strtotime($schedue_row['end_datetime']));
+    $sched_res[$schedue_row['id']] = $schedue_row;
+}
+
 
 ?>
 <!DOCTYPE html>
@@ -24,13 +38,27 @@ $profile_user 	= $row['userProfile'];
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="../../src/img/<?php echo $logo ?>">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+	<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+	<link rel="stylesheet" href="../../src/fullcalendar/lib/main.min.css">
 	<link rel="stylesheet" href="../../src/node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../src/node_modules/aos/dist/aos.css">
 	<link rel="stylesheet" href="../../src/css/admin.css?v=<?php echo time(); ?>">
+	<script src="../../src/fullcalendar/lib/main.min.js"></script>
 	<title>Home</title>
 
 </head>
 <body>
+<style>
+		.calendar .btn-info.text-light:hover,
+		.btn-info.text-light:focus {
+			background: #000;
+		}
+		.calendar table, tbody, td, tfoot, th, thead, tr {
+			border-color: #ebe8e8 !important;
+			border-style: solid;
+			border-width: 1px !important;
+		}
+	</style>
 
 <!-- Loader -->
 <div class="loader"></div>
@@ -39,7 +67,7 @@ $profile_user 	= $row['userProfile'];
 	<section id="sidebar">
 		<a href="#" class="brand">
 			<i class='bx bxs-baby-carriage' ></i>
-			<span class="text">Vaccine</span>
+			<span class="text">Infant</span>
 		</a>
 		<ul class="side-menu top">
 			<li class="active">
@@ -57,7 +85,7 @@ $profile_user 	= $row['userProfile'];
 			<li>
 				<a href="appointment">
 					<i class='bx bxs-calendar-check' ></i>
-					<span class="text">Appointment Information</span>
+					<span class="text">Appointment</span>
 				</a>
 			</li>
 			<li>
@@ -132,9 +160,9 @@ $profile_user 	= $row['userProfile'];
 					<i class='bx bxs-calendar'></i>
 					<span class="text">
 							<?php
-								$pdoQuery = "SELECT * FROM admin";
+								$pdoQuery = "SELECT * FROM appointment_list WHERE user_id = :user_id";
 								$pdoResult1 = $pdoConnect->prepare($pdoQuery);
-								$pdoResult1->execute();
+								$pdoResult1->execute(array(":user_id" => $parentID ));
 
 								$count = $pdoResult1->rowCount();
 
@@ -183,97 +211,15 @@ $profile_user 	= $row['userProfile'];
 					</span>
 				</li>
 			</ul>
-
-
-			<div class="table-data">
-				<div class="order">
-					<div class="head">
-						<h3>Schedule</h3>
-						<i class='bx bx-search' ></i>
-						<i class='bx bx-filter' ></i>
+				<div class="bg-light calendar">
+					<div class="container py-3" id="page-container">
+						<div class="row">
+							<div class="col-md-12">
+								<div id="calendar"></div>
+							</div>
+						</div>
 					</div>
-					<table>
-						<thead>
-							<tr>
-								<th>User</th>
-								<th>Date Order</th>
-								<th>Status</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<img src="../../src/img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="../../src/img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="../../src/img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status process">Process</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="../../src/img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="../../src/img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
-						</tbody>
-					</table>
 				</div>
-				<div class="todo">
-					<div class="head">
-						<h3>Todos</h3>
-						<i class='bx bx-plus' ></i>
-						<i class='bx bx-filter' ></i>
-					</div>
-					<ul class="todo-list">
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-					</ul>
-				</div>
-			</div>
 		</main>
 		<!-- MAIN -->
 	</section>
@@ -288,6 +234,93 @@ $profile_user 	= $row['userProfile'];
 
 
 	<script>
+				//Schedule
+				var scheds = $.parseJSON('<?= json_encode($sched_res) ?>');
+
+			var calendar;
+			var Calendar = FullCalendar.Calendar;
+			var events = [];
+			$(function() {
+				if (!!scheds) {
+					Object.keys(scheds).map(k => {
+						var row = scheds[k]
+						events.push({ id: row.id, title: row.title, title: row.title, start: row.start_datetime, end: row.end_datetime });
+					})
+				}
+				var date = new Date()
+				var d = date.getDate(),
+					m = date.getMonth(),
+					y = date.getFullYear()
+
+				calendar = new Calendar(document.getElementById('calendar'), {
+					headerToolbar: {
+						left: 'prev,next today',
+						right: 'dayGridMonth,dayGridWeek,list',
+						center: 'title',
+					},
+					selectable: true,
+					themeSystem: 'bootstrap',
+					//Random default events
+					events: events,
+					eventClick: function(info) {
+						var _details = $('#event-details-modal')
+						var id = info.event.id
+						if (!!scheds[id]) {
+							_details.find('#title').text(scheds[id].title)
+							_details.find('#description').text(scheds[id].description)
+							_details.find('#start').text(scheds[id].sdate)
+							_details.find('#end').text(scheds[id].edate)
+							_details.find('#edit,#delete').attr('data-id', id)
+							_details.modal('show')
+						} else {
+							alert("Event is undefined");
+						}
+					},
+					eventDidMount: function(info) {
+						// Do Something after events mounted
+					},
+					editable: true
+				});
+
+				calendar.render();
+
+				// Form reset listener
+				$('#schedule-form').on('reset', function() {
+					$(this).find('input:hidden').val('')
+					$(this).find('input:visible').first().focus()
+				})
+
+				// Edit Button
+				$('#edit').click(function() {
+					var id = $(this).attr('data-id')
+					if (!!scheds[id]) {
+						var _form = $('#schedule-form')
+						console.log(String(scheds[id].start_datetime), String(scheds[id].start_datetime).replace(" ", "\\t"))
+						_form.find('[name="id"]').val(id)
+						_form.find('[name="title"]').val(scheds[id].title)
+						_form.find('[name="description"]').val(scheds[id].description)
+						_form.find('[name="start_datetime"]').val(String(scheds[id].start_datetime).replace(" ", "T"))
+						_form.find('[name="end_datetime"]').val(String(scheds[id].end_datetime).replace(" ", "T"))
+						$('#event-details-modal').modal('hide')
+						_form.find('[name="title"]').focus()
+					} else {
+						alert("Event is undefined");
+					}
+				})
+
+				// Delete Button / Deleting an Event
+				$('#delete').click(function() {
+					var id = $(this).attr('data-id')
+					if (!!scheds[id]) {
+						var _conf = confirm("Are you sure to delete this scheduled event?");
+						if (_conf === true) {
+							location.href = "./delete_schedule.php?id=" + id;
+						}
+					} else {
+						alert("Event is undefined");
+					}
+				})
+			});
 
 		// Signout
 		$('.logout').on('click', function(e){

@@ -1,16 +1,17 @@
 <table class="table table-bordered table-hover">
 <?php
 
-require_once '../authentication/superadmin-class.php';
+require_once '../authentication/admin-class.php';
 include_once '../../../database/dbconfig2.php';
 
-$superadmin_home = new SUPERADMIN();
+$admin_home = new ADMIN();
 
-if(!$superadmin_home->is_logged_in())
+if(!$admin_home->is_logged_in())
 {
- $superadmin_home->redirect('../../');
+ $admin_home->redirect('../../');
 }
 
+$health_center_id = $_GET['health_center_id'];
 
 function get_total_row($pdoConnect)
 {
@@ -31,26 +32,26 @@ else
 }
 
 $query = "
-SELECT * FROM user
+SELECT * FROM appointment_list WHERE health_center_id = :health_center_id AND NOT status = :status
 ";
 $output = '';
 if($_POST['query'] != '')
 {
   $query .= '
-  WHERE uniqueID LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
+  AND appointment_id LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
   ';
 }
 
-$query .= 'ORDER BY userId DESC ';
+$query .= 'ORDER BY id ASC ';
 
 $filter_query = $query . 'LIMIT '.$start.', '.$limit.'';
 
 $statement = $pdoConnect->prepare($query);
-$statement->execute();
+$statement->execute(array(":health_center_id" => $health_center_id, ":status"=>"delete"));
 $total_data = $statement->rowCount();
 
 $statement = $pdoConnect->prepare($filter_query);
-$statement->execute();
+$statement->execute(array(":health_center_id" => $health_center_id, ":status"=>"delete" ));
 $total_filter_data = $statement->rowCount();
 
 if($total_data > 0)
@@ -58,24 +59,57 @@ if($total_data > 0)
 $output = '
 
     <thead>
-    <th>PROFILE</th>
-    <th>PARENT ID</th>
-    <th>FULL NAME</th>
-    <th>EMAIL</th>
+    <th>BABY</th>
+    <th>APPOINTMENT ID</th>
+    <th>TITLE</th>
+    <th>FROM</th>
+    <th>TO</th>
     <th>STATUS</th>
     <th>MORE</th>
     </thead>
 ';
   while($row=$statement->fetch(PDO::FETCH_ASSOC))
   {
+    // BABY
+    $babyId = $row["baby_id"];
+
+    $pdoQuery = "SELECT * FROM baby WHERE babyId = :babyId";
+    $pdoResult = $pdoConnect->prepare($pdoQuery);
+    $pdoExec = $pdoResult->execute(array(":babyId" => $babyId));
+    $babyProfile = $pdoResult->fetch(PDO::FETCH_ASSOC);
+
+    //STATUS
+    if($row['status']=="pending"){
+
+      $result = '<p class="btn-warning N">Pending</p>';
+
+    }
+    else if ($row['status']=="decline"){
+
+      $result = '<p class="btn-danger N">Decline</p>';
+
+    }
+    else if ($row['status']=="completed"){
+
+      $result = '<p class="btn-success N">Completed</p>';
+
+    }
+    else if ($row['status']=="resched"){
+
+      $result = '<p class="btn-info N">Reschedule</p>';
+
+    }
+
+
     $output .= '
     <tr>
-    <td><img src="../../src/img/'.$row["userProfile"].'"></td>
-      <td>'.$row["uniqueID"].'</td>
-      <td>'.$row["userLast_Name"].', '.$row["userFirst_Name"].' '.$row["userMiddle_Name"].'</td>
-      <td>'.$row["userEmail"].'</td>
-      <td>'. ($row['userStatus']=="N" ? '<p class="btn-warning N">Pending</p>' :  '<p class="btn-success Y">Active</p>') . '</td>
-      <td><button type="button" class="btn btn-primary V"> <a href="parents-profile?uniqueID='.$row["uniqueID"].'" class="view"><i class="bx bx-low-vision"></i></a></button></td>
+      <td><img src="../../src/img/'.$babyProfile["picture_of_baby"].'"></td>
+      <td>'.$row["appointment_id"].'</td>
+      <td>'.$row["title"].'</td>
+      <td>'.date("F d, Y h:i A",strtotime($row['start_datetime'])).'</td>
+      <td>'.date("F d, Y h:i A",strtotime($row['end_datetime'])).'</td>
+      <td>'.$result.'</td>
+      <td><button type="button" class="btn btn-primary V"> <a href="appointment_information?id='.$row["appointment_id"].'" class="view"><i class="bx bx-low-vision"></i></a></button></td>
 
     </tr>
     ';
