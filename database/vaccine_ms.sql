@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 18, 2022 at 02:58 PM
+-- Generation Time: Oct 02, 2022 at 03:13 PM
 -- Server version: 10.4.24-MariaDB
 -- PHP Version: 8.0.19
 
@@ -20,6 +20,73 @@ SET time_zone = "+00:00";
 --
 -- Database: `vaccine_ms`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `admin`
+--
+
+CREATE TABLE `admin` (
+  `userId` int(145) NOT NULL,
+  `health_center_id` varchar(145) DEFAULT NULL,
+  `health_center_name` varchar(145) DEFAULT NULL,
+  `adminEmail` varchar(145) DEFAULT NULL,
+  `adminPassword` varchar(145) DEFAULT NULL,
+  `adminStatus` enum('Y','N') DEFAULT 'N',
+  `tokencode` varchar(145) DEFAULT NULL,
+  `adminProfile` varchar(1145) NOT NULL DEFAULT 'profile.png',
+  `account_status` enum('active','disabled') DEFAULT 'active',
+  `created_at` timestamp NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `admin`
+--
+
+INSERT INTO `admin` (`userId`, `health_center_id`, `health_center_name`, `adminEmail`, `adminPassword`, `adminStatus`, `tokencode`, `adminProfile`, `account_status`, `created_at`, `updated_at`) VALUES
+(1, 'HCID-26854170', 'STA CRUZ HEALTH CENTER', 'andrei.m.viscayno@gmail.com', '24b35e91f6650c460b66bceaa1590664', 'Y', 'd5cbbb984afb41c1adf88a8e19740cc9', 'profile.png', 'active', '2022-07-07 05:19:44', '2022-09-26 05:40:27'),
+(2, 'HCID-76850170', 'SABA HEALTH CENTER', 'andreishania07012000@gmail.com', '90c3190d66199614aed7507774218d6b', 'N', '132253ff08b558a46a58eada69ffe29d', 'CCS LOGO.png', 'active', '2022-09-26 05:36:43', NULL);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `appointment_list`
+--
+
+CREATE TABLE `appointment_list` (
+  `id` int(30) NOT NULL,
+  `user_id` varchar(145) DEFAULT NULL,
+  `appointment_id` varchar(145) DEFAULT NULL,
+  `baby_id` varchar(145) DEFAULT NULL,
+  `health_center_id` varchar(145) DEFAULT NULL,
+  `title` varchar(145) DEFAULT NULL,
+  `description` varchar(145) DEFAULT NULL,
+  `start_datetime` datetime NOT NULL,
+  `end_datetime` datetime DEFAULT NULL,
+  `status` enum('accepted','decline','completed','resched','pending','delete') NOT NULL DEFAULT 'pending',
+  `created_at` timestamp NOT NULL DEFAULT current_timestamp(),
+  `updated_at` timestamp NULL DEFAULT NULL ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `appointment_list`
+--
+
+INSERT INTO `appointment_list` (`id`, `user_id`, `appointment_id`, `baby_id`, `health_center_id`, `title`, `description`, `start_datetime`, `end_datetime`, `status`, `created_at`, `updated_at`) VALUES
+(1, '26835870', 'APMTID-20124456', 'BBYID-33239582', 'HCID-76850170', 'Anti Single', 'Sample 1', '2022-09-30 05:00:00', '2022-09-30 09:00:00', 'pending', '2022-10-01 10:33:32', '2022-10-01 13:46:12'),
+(3, '26835870', 'APMTID-97011811', 'BBYID-33239582', 'HCID-26854170', 'Andrei', 'Andrei Sample', '2022-10-01 09:00:00', '2022-10-03 09:00:00', 'pending', '2022-10-01 10:33:32', NULL),
+(4, '26835870', 'APMTID-48083505', 'BBYID-33239582', 'HCID-26854170', 'SAmple 123', 'Sample 123', '2022-10-15 10:00:00', '2022-10-17 10:00:00', 'pending', '2022-10-01 10:33:32', NULL),
+(5, '26835870', 'APMTID-72498182', 'BBYID-33239582', 'HCID-26854170', 'Shania', 'Shania', '2022-10-11 13:00:00', '2022-10-13 23:59:00', 'pending', '2022-10-01 10:33:32', NULL),
+(6, '26835870', 'APMTID-92700226', 'BBYID-33239582', 'HCID-26854170', 'Sample 12222', 'Sample 1222', '2022-10-26 14:00:00', '2022-10-26 16:00:00', 'pending', '2022-10-01 10:33:32', NULL),
+(7, '26835870', 'APMTID-96298169', 'BBYID-33239582', 'HCID-76850170', 'Sakmmpel', 'Sample', '2022-10-20 14:29:00', '2022-10-20 16:29:00', 'pending', '2022-10-01 10:33:32', NULL),
+(8, '26835870', 'APMTID-33638435', 'BBYID-33239582', 'HCID-26854170', 'Vaccine Schedule', 'Sample Description', '2022-10-19 07:00:00', '2022-10-19 11:00:00', 'delete', '2022-10-01 10:33:32', '2022-10-01 13:45:35'),
+(9, '26835870', 'APMTID-62916346', 'BBYID-33239582', 'HCID-26854170', 'Vaccine', 'Vaccine', '2022-10-18 07:00:00', '2022-10-18 10:00:00', 'pending', '2022-10-01 10:33:32', NULL),
+(10, '26835870', 'APMTID-49902559', 'BBYID-33239582', 'HCID-26854170', 'ADASD', 'ASDASD', '2022-10-17 14:52:00', '2022-10-24 14:58:00', 'pending', '2022-10-01 10:33:32', NULL),
+(11, '26835870', 'APMTID-94659479', 'BBYID-33239582', 'HCID-76850170', 'Vaccine', 'sAMPLE', '2022-10-17 05:54:00', '2022-10-17 10:54:00', 'delete', '2022-10-01 10:33:32', '2022-10-01 13:45:45'),
+(12, '26835870', 'APMTID-32923200', 'BBYID-33239582', 'HCID-26854170', 'Booster Shots', 'SAmple', '2022-10-11 07:00:00', '2022-10-11 10:00:00', 'pending', '2022-10-01 10:33:32', NULL),
+(13, '26835870', 'APMTID-39690487', 'BBYID-33239582', 'HCID-26854170', 'Anti Zombie', 'Sample', '2022-10-21 08:00:00', '2022-10-21 11:00:00', 'pending', '2022-10-01 10:33:32', NULL);
 
 -- --------------------------------------------------------
 
@@ -153,7 +220,7 @@ CREATE TABLE `system_config` (
 --
 
 INSERT INTO `system_config` (`Id`, `system_name`, `system_number`, `system_email`, `copy_right`, `created_at`, `updated_at`) VALUES
-(1, 'Vaccine Schedule System', '9776621929', 'nusuganngelou@gmail.com', 'Copyright 2022 MV. All right reserved', '2022-07-08 12:38:28', '2022-08-31 09:54:15');
+(1, 'Infant Milestone Scheduling System', '9776621929', 'nusuganngelou@gmail.com', 'Copyright 2022 MV. All right reserved', '2022-07-08 12:38:28', '2022-10-01 13:57:30');
 
 -- --------------------------------------------------------
 
@@ -188,6 +255,27 @@ CREATE TABLE `tb_logs` (
   `activity` varchar(145) NOT NULL,
   `date` varchar(145) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `tb_logs`
+--
+
+INSERT INTO `tb_logs` (`activityId`, `user`, `email`, `activity`, `date`) VALUES
+(1, 'User nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-09-24 04:37:13 PM'),
+(2, 'User nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-09-26 07:38:13 AM'),
+(3, 'Superadmin nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-09-26 07:38:22 AM'),
+(4, 'Admin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-26 10:51:29 AM'),
+(5, 'Admin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-09-26 12:07:53 PM'),
+(6, 'User nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-09-27 08:34:02 PM'),
+(7, 'User nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-09-29 11:46:37 AM'),
+(8, 'Superadmin nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-09-29 03:14:27 PM'),
+(9, 'User nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-09-30 08:49:19 AM'),
+(10, 'User nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-10-01 08:13:32 AM'),
+(11, 'Superadmin nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-10-01 08:37:02 AM'),
+(12, 'Admin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-10-01 01:57:23 PM'),
+(13, 'User nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-10-01 07:15:55 PM'),
+(14, 'Admin andrei.m.viscayno@gmail.com', 'andrei.m.viscayno@gmail.com', 'Has successfully signed in', '2022-10-01 07:36:30 PM'),
+(15, 'Superadmin nusuganngelou@gmail.com', 'nusuganngelou@gmail.com', 'Has successfully signed in', '2022-10-01 07:42:36 PM');
 
 -- --------------------------------------------------------
 
@@ -226,11 +314,23 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`userId`, `userFirst_Name`, `userMiddle_Name`, `userLast_Name`, `userSex`, `userBirthDate`, `userAge`, `userCivilStatus`, `userReligion`, `userProvince`, `userCity`, `userBarangay`, `userStreet`, `userPhone_Number`, `userEmail`, `userPassword`, `userStatus`, `tokencode`, `userProfile`, `uniqueID`, `account_status`, `created_at`, `updated_at`) VALUES
-(2, 'ANGELOU', 'SANGALANG', 'NUSUG', 'FEMALE', '1999-01-07', '23', 'SINGLE', 'INC', 'PAMPANGA', 'LUBAO', 'STA. CRUZ', 'QUEZON ST.', '9673527711', 'nusuganngelou@gmail.com', '24b35e91f6650c460b66bceaa1590664', 'Y', '0dd0a99f144e335d0726a8304281d6a1', 'profile.png', '26835870', 'active', '2022-08-31 10:58:06', '2022-09-18 12:57:52');
+(2, 'ANGELOU', 'SANGALANG', 'NUSUG', 'FEMALE', '1999-01-07', '23', 'SINGLE', 'INC', 'PAMPANGA', 'LUBAO', 'STA. CRUZ', 'QUEZON ST.', '9673527711', 'nusuganngelou@gmail.com', '24b35e91f6650c460b66bceaa1590664', 'Y', '0dd0a99f144e335d0726a8304281d6a1', 'k9p2e849d4bbqpi1boeus5j118._SY600_.jpg', '26835870', 'active', '2022-08-31 10:58:06', '2022-10-01 04:36:53');
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `admin`
+--
+ALTER TABLE `admin`
+  ADD PRIMARY KEY (`userId`);
+
+--
+-- Indexes for table `appointment_list`
+--
+ALTER TABLE `appointment_list`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `baby`
@@ -285,6 +385,18 @@ ALTER TABLE `user`
 --
 
 --
+-- AUTO_INCREMENT for table `admin`
+--
+ALTER TABLE `admin`
+  MODIFY `userId` int(145) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `appointment_list`
+--
+ALTER TABLE `appointment_list`
+  MODIFY `id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
+
+--
 -- AUTO_INCREMENT for table `baby`
 --
 ALTER TABLE `baby`
@@ -324,7 +436,7 @@ ALTER TABLE `system_logo`
 -- AUTO_INCREMENT for table `tb_logs`
 --
 ALTER TABLE `tb_logs`
-  MODIFY `activityId` int(100) NOT NULL AUTO_INCREMENT;
+  MODIFY `activityId` int(100) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT for table `user`
