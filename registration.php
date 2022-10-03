@@ -24,11 +24,11 @@ include_once 'dashboard/superadmin/controller/select-settings-coniguration-contr
 	<div class="class-modal">
 		<div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered modal-lg">
-				<div class="modal-content">
+				<div class="modal-content" >
 				<div class="header"></div>
 					<div class="modal-header">
 						<h5 class="modal-title" id="registrationModalLabel">Registration</h5>
-						<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+						<button type="button" class="btn-close" onclick="location.href='index'"></button>
 					</div>
 					<div class="modal-body">
                         <section class="data-form">
