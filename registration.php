@@ -24,7 +24,7 @@ include_once 'dashboard/superadmin/controller/select-settings-coniguration-contr
 	<div class="class-modal">
 		<div class="modal fade" id="registrationModal" tabindex="-1" aria-labelledby="registrationModalLabel" aria-hidden="true">
 			<div class="modal-dialog modal-dialog-centered modal-lg">
-				<div class="modal-content" style="height: 700px;">
+				<div class="modal-content">
 				<div class="header"></div>
 					<div class="modal-header">
 						<h5 class="modal-title" id="registrationModalLabel">Registration</h5>
