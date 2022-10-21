@@ -92,6 +92,12 @@ $updated_at             =        $parent["updated_at"];
 					<span class="text">Parent/User Info</span>
 				</a>
 			</li>
+			<li>
+				<a href="services">
+					<i class='bx bxs-wrench' ></i>
+					<span class="text">Services</span>
+				</a>
+			</li>
 		</ul>
 		<ul class="side-menu top">
 			<li>

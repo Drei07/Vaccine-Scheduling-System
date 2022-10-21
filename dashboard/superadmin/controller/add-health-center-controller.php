@@ -49,7 +49,7 @@ if(isset($_POST['btn-register'])) {
             Email:<br />$email
             Password:<br />$upass
             <br /><br />
-            <a href='https://localhost/RMS/public/admin/verify?id=$id&code=$tokencode'>Click HERE to Verify your Account!</a>
+            <a href='https://localhost/Vaccine-Scheduling-System/public/admin/verify?id=$id&code=$tokencode'>Click HERE to Verify your Account!</a>
             <br /><br />
             Thanks,";
             

@@ -15,7 +15,8 @@ $stmt->execute(array(":uid"=>$_SESSION['adminSession']));
 $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
 $profile_user 	= $row['adminProfile'];
-$health_center_id = $row["health_center_id"];
+$health_ID		= $row['health_center_id'];
+
 
 ?>
 <!DOCTYPE html>
@@ -165,18 +166,32 @@ $health_center_id = $row["health_center_id"];
 								<form action="controller/add-appointment-controller.php" method="POST" id="schedule-form" class="row gx-5 needs-validation" name="form" onsubmit="return validate()"  novalidate style="overflow: hidden;">
 									<div class="row gx-5 needs-validation">
 										<!-- Appointment Information -->
-										<input type="hidden" name="userid" value="<?php echo $parentID ?>">
+										
 										<div class="col-md-12">
-											<label for="title" class="form-label">Services<span> *</span></label>
-											<input type="text" class="form-control" maxlength="20" autocomplete="off" name="title" id="title" required>
+											<label for="services" class="form-label">Services<span> *</span></label>
+											<select type="text" class="form-select form-control"  name="services" id="services"  required>
+											<option selected disabled value="">Select Services</option>
+												<?php
+													$pdoQuery = "SELECT * FROM services ";
+													$pdoResult = $pdoConnect->prepare($pdoQuery);
+													$pdoResult->execute();
+													
+														while($services=$pdoResult->fetch(PDO::FETCH_ASSOC)){
+															?>
+															<option value="<?php echo $services['services_id']; ?> " >
+															<?php echo $services['services'];  ?></option>
+															<?php
+														}
+												?>
+											</select>
 											<div class="invalid-feedback">
-											Please provide a Title.
+												Please select a Services.
 											</div>
 										</div>
 
 										<div class="col-md-12	">
-											<label for="Description" class="form-label">Add Description<span> *</span></label>
-											<input type="text"  class="form-control" autocomplete="off" name="description" id="description" required>
+											<label for="Description" class="form-label">Add Description</label>
+											<input type="text"  class="form-control" autocomplete="off" name="description" id="description">
 											<div class="invalid-feedback">
 											Please provide a Description.
 											</div>
@@ -187,9 +202,9 @@ $health_center_id = $row["health_center_id"];
 											<select type="text" class="form-select form-control"  name="baby" id="baby"  required>
 											<option selected disabled value="">Select Baby</option>
 												<?php
-													$pdoQuery = "SELECT * FROM baby WHERE parentId = :parentId";
+													$pdoQuery = "SELECT * FROM baby ";
 													$pdoResult = $pdoConnect->prepare($pdoQuery);
-													$pdoResult->execute(array(":parentId" => $parentID));
+													$pdoResult->execute();
 													
 														while($baby=$pdoResult->fetch(PDO::FETCH_ASSOC)){
 															?>
@@ -204,25 +219,11 @@ $health_center_id = $row["health_center_id"];
 											</div>
 										</div>
 
-										<div class="col-md-12">
-											<label for="health_center" class="form-label">Select Health Center<span> *</span></label>
-											<select class="form-select form-control"  name="health_center"  autocapitalize="on" autocomplete="off" id="health_center" required>
-											<option selected disabled value="">Select Baby</option>
-												<?php
-													$pdoQuery = "SELECT * FROM admin";
-													$pdoResult = $pdoConnect->prepare($pdoQuery);
-													$pdoResult->execute();
-													
-														while($baby=$pdoResult->fetch(PDO::FETCH_ASSOC)){
-															?>
-															<option value="<?php echo $baby['health_center_id']; ?>">
-															<?php echo $baby['health_center_name']  ?></option>
-															<?php
-														}
-												?>
-											</select>
+										<div class="col-md-12" style="display: none;">
+											<label for="health_center" class="form-label"><span> *</span></label>
+											<input type="text"  class="form-control" autocomplete="off" name="health_center" id="health_center" value="<?php echo $health_ID ?>" required>
 											<div class="invalid-feedback">
-												Please select a Health Center.
+											Please provide a .
 											</div>
 										</div>
 
@@ -279,7 +280,7 @@ $health_center_id = $row["health_center_id"];
 			function load_data(page, query = '')
 			{
 			$.ajax({
-				url:"data-table/appointment-data-table.php?health_center_id=<?php echo $health_center_id ?>",
+				url:"data-table/appointment-data-table.php",
 				method:"POST",
 				data:{page:page, query:query},
 				success:function(data)

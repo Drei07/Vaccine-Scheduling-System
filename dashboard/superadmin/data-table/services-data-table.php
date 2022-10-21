@@ -1,14 +1,14 @@
 <table class="table table-bordered table-hover">
 <?php
 
-require_once '../authentication/admin-class.php';
+require_once '../authentication/superadmin-class.php';
 include_once '../../../database/dbconfig2.php';
 
-$admin_home = new ADMIN();
+$superadmin_home = new SUPERADMIN();
 
-if(!$admin_home->is_logged_in())
+if(!$superadmin_home->is_logged_in())
 {
- $admin_home->redirect('../../');
+ $superadmin_home->redirect('../../');
 }
 
 
@@ -31,26 +31,26 @@ else
 }
 
 $query = "
-SELECT * FROM appointment_list WHERE NOT status = :status
+SELECT * FROM services
 ";
 $output = '';
 if($_POST['query'] != '')
 {
   $query .= '
-  AND appointment_id LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
+  WHERE services LIKE "%'.str_replace(' ', '%', $_POST['query']).'%"
   ';
 }
 
-$query .= 'ORDER BY id ASC ';
+$query .= 'ORDER BY Id DESC ';
 
 $filter_query = $query . 'LIMIT '.$start.', '.$limit.'';
 
 $statement = $pdoConnect->prepare($query);
-$statement->execute(array(":status"=>"delete"));
+$statement->execute();
 $total_data = $statement->rowCount();
 
 $statement = $pdoConnect->prepare($filter_query);
-$statement->execute(array(":status"=>"delete" ));
+$statement->execute();
 $total_filter_data = $statement->rowCount();
 
 if($total_data > 0)
@@ -58,57 +58,18 @@ if($total_data > 0)
 $output = '
 
     <thead>
-    <th>BABY</th>
-    <th>APPOINTMENT ID</th>
-    <th>TITLE</th>
-    <th>FROM</th>
-    <th>TO</th>
-    <th>STATUS</th>
+    <th>SERVICE ID</th>
+    <th>SERVICES</th>
     <th>MORE</th>
     </thead>
 ';
   while($row=$statement->fetch(PDO::FETCH_ASSOC))
   {
-    // BABY
-    $babyId = $row["baby_id"];
-
-    $pdoQuery = "SELECT * FROM baby WHERE babyId = :babyId";
-    $pdoResult = $pdoConnect->prepare($pdoQuery);
-    $pdoExec = $pdoResult->execute(array(":babyId" => $babyId));
-    $babyProfile = $pdoResult->fetch(PDO::FETCH_ASSOC);
-
-    //STATUS
-    if($row['status']=="pending"){
-
-      $result = '<p class="btn-warning N">Pending</p>';
-
-    }
-    else if ($row['status']=="decline"){
-
-      $result = '<p class="btn-danger N">Decline</p>';
-
-    }
-    else if ($row['status']=="completed"){
-
-      $result = '<p class="btn-success N">Completed</p>';
-
-    }
-    else if ($row['status']=="resched"){
-
-      $result = '<p class="btn-info N">Reschedule</p>';
-
-    }
-
-
     $output .= '
     <tr>
-      <td><img src="../../src/img/'.$babyProfile["picture_of_baby"].'"></td>
-      <td>'.$row["appointment_id"].'</td>
-      <td>'.$row["title"].'</td>
-      <td>'.date("F d, Y h:i A",strtotime($row['start_datetime'])).'</td>
-      <td>'.date("F d, Y h:i A",strtotime($row['end_datetime'])).'</td>
-      <td>'.$result.'</td>
-      <td><button type="button" class="btn btn-primary V"> <a href="appointment_information?id='.$row["appointment_id"].'" class="view"><i class="bx bx-low-vision"></i></a></button></td>
+      <td>'.$row["services_id"].'</td>
+      <td>'.$row["services"].'</td>
+      <td><button type="button" class="button V"> <a href="services-data" class="view"><i class="bx bx-low-vision"></i></a></button></td>
 
     </tr>
     ';

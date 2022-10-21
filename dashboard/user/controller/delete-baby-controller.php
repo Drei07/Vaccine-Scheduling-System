@@ -25,7 +25,7 @@ if(!$user_home->is_logged_in())
     );
 
     $_SESSION['status_title'] = "Success!";
-    $_SESSION['status'] = "Class has succesfully removed";
+    $_SESSION['status'] = "Baby has succesfully removed";
     $_SESSION['status_code'] = "success";
     $_SESSION['status_timer'] = 40000;
     header("Location: ../baby");

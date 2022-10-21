@@ -31,6 +31,7 @@ foreach($pdoResult->fetchAll(PDO::FETCH_ASSOC) as $schedue_row){
 }
 
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -80,7 +81,7 @@ foreach($pdoResult->fetchAll(PDO::FETCH_ASSOC) as $schedue_row){
 			<li>
 				<a href="baby">
 					<i class='bx bxs-baby-carriage'></i>
-					<span class="text">My Baby</span>
+					<span class="text">Baby</span>
 				</a>
 			</li>
 			<li>
@@ -235,8 +236,8 @@ foreach($pdoResult->fetchAll(PDO::FETCH_ASSOC) as $schedue_row){
 
 
 	<script>
-				//Schedule
-				var scheds = $.parseJSON('<?= json_encode($sched_res) ?>');
+			//Schedule
+			var scheds = $.parseJSON('<?= json_encode($sched_res) ?>');
 
 			var calendar;
 			var Calendar = FullCalendar.Calendar;
@@ -245,7 +246,7 @@ foreach($pdoResult->fetchAll(PDO::FETCH_ASSOC) as $schedue_row){
 				if (!!scheds) {
 					Object.keys(scheds).map(k => {
 						var row = scheds[k]
-						events.push({ id: row.id, title: row.title, title: row.title, start: row.start_datetime, end: row.end_datetime });
+						events.push({ id: row.id, title: row.title, start: row.start_datetime, end: row.end_datetime });
 					})
 				}
 				var date = new Date()

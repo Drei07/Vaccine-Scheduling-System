@@ -65,6 +65,12 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 					<span class="text">Parent/User Info</span>
 				</a>
 			</li>
+			<li>
+				<a href="services">
+					<i class='bx bxs-wrench' ></i>
+					<span class="text">Services</span>
+				</a>
+			</li>
 		</ul>
 		<ul class="side-menu top">
 			<li>
@@ -151,7 +157,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 
                                     <div class="col-md-6">
                                         <label for="HCenter" class="form-label">Name of Health Center<span> *</span></label>
-                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control" maxlength="20" autocomplete="off" name="health_center_name" id="HCenter" required>
+                                        <input type="text" onkeyup="this.value = this.value.toUpperCase();" class="form-control"  autocomplete="off" name="health_center_name" id="HCenter" required>
                                         <div class="invalid-feedback">
                                         Please provide a Name of Health Center.
                                         </div>

@@ -23,16 +23,17 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<link rel="shortcut icon" href="../../src/img/<?php echo $logo ?>">
 	<link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
-	<link rel="stylesheet" href="../../src/node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../../src/node_modules/bootstrap/dist/css/bootstrap.min.css">
 	<link rel="stylesheet" href="../../src/node_modules/aos/dist/aos.css">
 	<link rel="stylesheet" href="../../src/css/admin.css?v=<?php echo time(); ?>">
-	<title>Home</title>
+	<title>Services</title>
 
 </head>
 <body>
 
 <!-- Loader -->
 <div class="loader"></div>
+
 	<!-- SIDEBAR -->
 	<section id="sidebar">
 		<a href="#" class="brand">
@@ -40,14 +41,14 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 			<span class="text">Infant</span>
 		</a>
 		<ul class="side-menu top">
-			<li class="active">
+			<li>
 				<a href="home">
 					<i class='bx bxs-dashboard' ></i>
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
 			<li>
-				<a href="health-center">
+				<a href="">
 					<i class='bx bxs-ambulance' ></i>
 					<span class="text">Health Center Info</span>
 				</a>
@@ -64,14 +65,14 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 					<span class="text">Parent/User Info</span>
 				</a>
 			</li>
-			<li>
+			<li  class="active">
 				<a href="services">
 					<i class='bx bxs-wrench' ></i>
 					<span class="text">Services</span>
 				</a>
 			</li>
 		</ul>
-		<ul class="side-menu">
+		<ul class="side-menu top">
 			<li>
 				<a href="settings">
 					<i class='bx bxs-cog' ></i>
@@ -124,162 +125,39 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 		<main>
 			<div class="head-title">
 				<div class="left">
-					<h1>Dashboard</h1>
+					<h1>Services</h1>
 					<ul class="breadcrumb">
 						<li>
-							<a href="#">Dashboard</a>
+							<a class="active" href="home">Home</a>
 						</li>
-						<li><i class='bx bx-chevron-right' ></i></li>
+						<li>|</li>
 						<li>
-							<a class="active" href="#">Home</a>
+							<a href="#">Services</a>
 						</li>
 					</ul>
 				</div>
 			</div>
 
-			<ul class="box-info">
-				<li onclick="location.href='health-center'">
-					<i class='bx bxs-ambulance' ></i>
-					<span class="text">
-							<?php
-								$pdoQuery = "SELECT * FROM admin";
-								$pdoResult1 = $pdoConnect->prepare($pdoQuery);
-								$pdoResult1->execute();
-
-								$count = $pdoResult1->rowCount();
-
-								echo
-								"
-									<h3>$count</h3>
-								";
-							?>
-						<p>Health Center</p>
-					</span>
-				</li>
-				<li onclick="location.href='baby'">
-					<i class='bx bxs-baby-carriage'></i>
-					<span class="text">
-					<?php
-								$pdoQuery = "SELECT * FROM  baby";
-								$pdoResult1 = $pdoConnect->prepare($pdoQuery);
-								$pdoResult1->execute();
-
-								$count = $pdoResult1->rowCount();
-
-								echo
-								"
-									<h3>$count</h3>
-								";
-							?>
-						<p>Baby</p>
-					</span>
-				</li>
-				<li onclick="location.href='parents	'">
-					<i class='bx bx-user-circle'></i>
-					<span class="text">
-					<?php
-								$pdoQuery = "SELECT * FROM 	user";
-								$pdoResult1 = $pdoConnect->prepare($pdoQuery);
-								$pdoResult1->execute();
-
-								$count = $pdoResult1->rowCount();
-
-								echo
-								"
-									<h3>$count</h3>
-								";
-							?>
-						<p>Parents</p>
-					</span>
-				</li>
-			</ul>
-
+            <div class="modal-button">
+				<button type="button" onclick="location.href='add-services'" class="button"><i class='bx bxs-plus-circle'></i> Add Services</button>
+			</div>
 
 			<div class="table-data">
 				<div class="order">
 					<div class="head">
-						<h3>Schedule</h3>
+						<h3>Information</h3>
 					</div>
-					<table>
-						<thead>
-							<tr>
-								<th>User</th>
-								<th>Date Order</th>
-								<th>Status</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>
-									<img src="../../src/img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="../../src/img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="../../src/img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status process">Process</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="../../src/img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status pending">Pending</span></td>
-							</tr>
-							<tr>
-								<td>
-									<img src="../../src/img/people.png">
-									<p>John Doe</p>
-								</td>
-								<td>01-10-2021</td>
-								<td><span class="status completed">Completed</span></td>
-							</tr>
-						</tbody>
-					</table>
-				</div>
-				<div class="todo">
-					<div class="head">
-						<h3>Todos</h3>
-						<i class='bx bx-plus' ></i>
-						<i class='bx bx-filter' ></i>
-					</div>
-					<ul class="todo-list">
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-						<li class="not-completed">
-							<p>Todo List</p>
-							<i class='bx bx-dots-vertical-rounded' ></i>
-						</li>
-					</ul>
+                    <!-- BODY -->
+                    <section class="data-table">
+                        <div class="searchBx">
+                            <input type="input" placeholder="search . . . . . ." class="search" name="search_box" id="search_box"><button class="searchBtn"><i class="bx bx-search icon"></i></button>
+                        </div>
+
+                        <div class="table">
+                        <div id="dynamic_content">
+                        </div>
+
+                    </section>
 				</div>
 			</div>
 		</main>
@@ -294,8 +172,38 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 	<script src="../../src/js/admin.js"></script>
 	<script src="../../src/js/loader.js"></script>
 
-
 	<script>
+
+        //live search---------------------------------------------------------------------------------------//
+        $(document).ready(function(){
+
+        load_data(1);
+
+        function load_data(page, query = '')
+        {
+        $.ajax({
+            url:"data-table/services-data-table.php",
+            method:"POST",
+            data:{page:page, query:query},
+            success:function(data)
+            {
+            $('#dynamic_content').html(data);
+            }
+        });
+        }
+
+        $(document).on('click', '.page-link', function(){
+        var page = $(this).data('page_number');
+        var query = $('#search_box').val();
+        load_data(page, query);
+        });
+
+        $('#search_box').keyup(function(){
+        var query = $('#search_box').val();
+        load_data(1, query);
+        });
+
+        });
 
 		// Signout
 		$('.logout').on('click', function(e){
