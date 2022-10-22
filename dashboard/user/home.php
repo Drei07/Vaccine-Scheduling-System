@@ -18,12 +18,12 @@ $profile_user 	= $row['userProfile'];
 $parentID       = $row['uniqueID'];
 
 
-$pdoQuery = "SELECT * FROM appointment_list WHERE user_id = :user_id";
-$pdoResult = $pdoConnect->prepare($pdoQuery);
-$pdoExec = $pdoResult->execute(array(":user_id" => $parentID));
+$pdoQuery = "SELECT * FROM appointment_list WHERE parent_id = :parent_id";
+$pdoResult2 = $pdoConnect->prepare($pdoQuery);
+$pdoExec = $pdoResult2->execute(array(":parent_id" => $parentID));
 $sched_res = [];
 
-foreach($pdoResult->fetchAll(PDO::FETCH_ASSOC) as $schedue_row){
+foreach($pdoResult2->fetchAll(PDO::FETCH_ASSOC) as $schedue_row){
     $schedue_row['sdate'] = date("F d, Y h:i A",strtotime($schedue_row['start_datetime']));
     $schedue_row['edate'] = date("F d, Y h:i A",strtotime($schedue_row['end_datetime']));
     $sched_res[$schedue_row['id']] = $schedue_row;
@@ -86,12 +86,6 @@ foreach($pdoResult->fetchAll(PDO::FETCH_ASSOC) as $schedue_row){
 				<a href="appointment">
 					<i class='bx bxs-calendar-check' ></i>
 					<span class="text">Appointment</span>
-				</a>
-			</li>
-			<li>
-				<a href="services">
-                    <i class='bx bxs-wrench' ></i>
-					<span class="text">Services</span>
 				</a>
 			</li>
 		</ul>
@@ -160,9 +154,9 @@ foreach($pdoResult->fetchAll(PDO::FETCH_ASSOC) as $schedue_row){
 					<i class='bx bxs-calendar'></i>
 					<span class="text">
 							<?php
-								$pdoQuery = "SELECT * FROM appointment_list WHERE user_id = :user_id";
+								$pdoQuery = "SELECT * FROM appointment_list WHERE parent_id = :parent_id";
 								$pdoResult1 = $pdoConnect->prepare($pdoQuery);
-								$pdoResult1->execute(array(":user_id" => $parentID ));
+								$pdoResult1->execute(array(":parent_id" => $parentID ));
 
 								$count = $pdoResult1->rowCount();
 
@@ -190,24 +184,6 @@ foreach($pdoResult->fetchAll(PDO::FETCH_ASSOC) as $schedue_row){
 								";
 							?>
 						<p>Baby</p>
-					</span>
-				</li>
-				<li onclick="location.href='health-center'">
-					<i class='bx bxs-ambulance' ></i>
-					<span class="text">
-					<?php
-								$pdoQuery = "SELECT * FROM 	admin";
-								$pdoResult1 = $pdoConnect->prepare($pdoQuery);
-								$pdoResult1->execute();
-
-								$count = $pdoResult1->rowCount();
-
-								echo
-								"
-									<h3>$count</h3>
-								";
-							?>
-						<p>Health Center</p>
 					</span>
 				</li>
 			</ul>

@@ -50,12 +50,6 @@ $health_ID		= $row['health_center_id'];
 					<span class="text">Dashboard</span>
 				</a>
 			</li>
-			<li>
-				<a href="baby">
-					<i class='bx bxs-baby-carriage'></i>
-					<span class="text">My Baby</span>
-				</a>
-			</li>
 			<li class="active">
 				<a href="">
 					<i class='bx bxs-calendar-check' ></i>
@@ -77,7 +71,7 @@ $health_ID		= $row['health_center_id'];
 				</a>
 			</li>
 			<li>
-				<a href="authentication/user-signout" class="logout">
+				<a href="authentication/admin-signout" class="logout">
 					<i class='bx bxs-log-out-circle' ></i>
 					<span class="text">Signout</span>
 				</a>
@@ -173,10 +167,10 @@ $health_ID		= $row['health_center_id'];
 											<option selected disabled value="">Select Services</option>
 												<?php
 													$pdoQuery = "SELECT * FROM services ";
-													$pdoResult = $pdoConnect->prepare($pdoQuery);
-													$pdoResult->execute();
+													$pdoResult1 = $pdoConnect->prepare($pdoQuery);
+													$pdoResult1->execute();
 													
-														while($services=$pdoResult->fetch(PDO::FETCH_ASSOC)){
+														while($services=$pdoResult1->fetch(PDO::FETCH_ASSOC)){
 															?>
 															<option value="<?php echo $services['services_id']; ?> " >
 															<?php echo $services['services'];  ?></option>
@@ -203,10 +197,10 @@ $health_ID		= $row['health_center_id'];
 											<option selected disabled value="">Select Baby</option>
 												<?php
 													$pdoQuery = "SELECT * FROM baby ";
-													$pdoResult = $pdoConnect->prepare($pdoQuery);
-													$pdoResult->execute();
+													$pdoResult2 = $pdoConnect->prepare($pdoQuery);
+													$pdoResult2->execute();
 													
-														while($baby=$pdoResult->fetch(PDO::FETCH_ASSOC)){
+														while($baby=$pdoResult2->fetch(PDO::FETCH_ASSOC)){
 															?>
 															<option value="<?php echo $baby['babyId']; ?> " >
 															<?php echo "BABY - ".$baby['last_name'].", ".$baby['first_name']  ?></option>
@@ -247,7 +241,7 @@ $health_ID		= $row['health_center_id'];
 									</div>
 
 									<div class="addBtn">
-										<button class="button-cancel" type="reset" form="schedule-form">Cancel</button>
+										<button class="button-cancel" type="reset" form="schedule-form">Reset</button>
 										<button type="submit" class="button" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Save</button>
 									</div>
 								</form>

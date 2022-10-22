@@ -19,9 +19,20 @@ if(isset($_POST['btn-update-profile'])){
     $first_name     = trim($_POST['FName']);
     $middle_name    = trim($_POST['MName']);
     $last_name      = trim($_POST['LName']);
-    $phone_number   = trim($_POST['PNumber']);
+    $Sex            = trim($_POST['Sex']);
+    $BirthDate      = trim($_POST['BirthDate']);
+    $Age            = trim($_POST['Age']);
+    $CStatus        = trim($_POST['CStatus']);
+    $Religion       = trim($_POST['Religion']);
+    $PNumber        = trim($_POST['PNumber']);
 
-    $pdoQuery = "UPDATE user SET userFirst_Name=:userFirst_Name, userMiddle_Name=:userMiddle_Name, userLast_Name=:userLast_Name, userPhone_Number=:userPhone_Number WHERE userId=". $_GET['id'];
+    $Province       = trim($_POST['Province']);
+    $City           = trim($_POST['City']);
+    $Barangay       = trim($_POST['Barangay']);
+    $Street         = trim($_POST['Street']);
+    
+
+    $pdoQuery = "UPDATE user SET userFirst_Name=:userFirst_Name, userMiddle_Name=:userMiddle_Name, userLast_Name=:userLast_Name, userSex=:userSex, userBirthDate=:userBirthDate, userAge=:userAge, userCivilStatus=:userCivilStatus, userReligion=:userReligion, userProvince=:userProvince, userCity=:userCity, userBarangay=:userBarangay, userStreet=:userStreet, userPhone_Number=:userPhone_Number WHERE userId=". $_GET['id'];
     $pdoResult = $pdoConnect->prepare($pdoQuery);
     $pdoExec = $pdoResult->execute(
     array
@@ -30,7 +41,16 @@ if(isset($_POST['btn-update-profile'])){
     ":userFirst_Name"              =>$first_name,
     ":userMiddle_Name"             =>$middle_name,
     ":userLast_Name"               =>$last_name,
-    ":userPhone_Number"            =>$phone_number,
+    ":userSex"                     =>$Sex,
+    ":userBirthDate"               =>$BirthDate,
+    ":userAge"                     =>$Age,
+    ":userCivilStatus"             =>$CStatus,
+    ":userReligion"                =>$Religion,
+    ":userProvince"                =>$Province,
+    ":userCity"                    =>$City,
+    ":userBarangay"                =>$Barangay,
+    ":userStreet"                  =>$Street,
+    ":userPhone_Number"            =>$PNumber,
 
     )
     );

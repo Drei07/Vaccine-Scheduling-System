@@ -31,7 +31,7 @@ if(isset($_POST['btn-register'])) {
     $tokencode      = md5(uniqid(rand()));
 
     //uniqueID
-    $uniqueID            = str_pad(mt_rand(1,99999999),8,'0',STR_PAD_LEFT);
+    $uniqueID            = "PRNTID-".(str_pad(mt_rand(1,99999999),8,'0',STR_PAD_LEFT));
 
     $stmt = $reg_user->runQuery("SELECT * FROM user WHERE userEmail=:email_id");
     $stmt->execute(array(":email_id"=>$email));

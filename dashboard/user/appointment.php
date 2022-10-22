@@ -62,12 +62,6 @@ $parentID       = $row['uniqueID'];
 					<span class="text">Appointment</span>
 				</a>
 			</li>
-			<li>
-				<a href="services">
-                    <i class='bx bxs-wrench' ></i>
-					<span class="text">Services</span>
-				</a>
-			</li>
 		</ul>
 		<ul class="side-menu">
 			<li>
@@ -128,9 +122,6 @@ $parentID       = $row['uniqueID'];
 					</ul>
 				</div>
 			</div>
-			<div class="modal-button">
-				<button type="button" data-bs-toggle="modal" data-bs-target="#classModal" class="button"><i class='bx bxs-plus-circle'></i> Add Appointment</button>
-			</div>
 
 			<div class="table-data">
 				<div class="order">
@@ -148,112 +139,6 @@ $parentID       = $row['uniqueID'];
                         </div>
 
                     </section>
-				</div>
-			</div>
-
-			<!-- MODALS -->
-
-			<div class="class-modal">
-				<div class="modal fade" id="classModal" tabindex="-1" aria-labelledby="classModalLabel" aria-hidden="true">
-					<div class="modal-dialog modal-dialog-centered modal-lg">
-						<div class="modal-content">
-						<div class="header"></div>
-							<div class="modal-header">
-								<h5 class="modal-title" id="classModalLabel">Add Appointment</h5>
-								<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-							</div>
-							<div class="modal-body">
-								<form action="controller/add-appointment-controller.php" method="POST" id="schedule-form" class="row gx-5 needs-validation" name="form" onsubmit="return validate()"  novalidate style="overflow: hidden;">
-									<div class="row gx-5 needs-validation">
-										<!-- Appointment Information -->
-										<input type="hidden" name="userid" value="<?php echo $parentID ?>">
-										<div class="col-md-12">
-											<label for="title" class="form-label">Services<span> *</span></label>
-											<input type="text" class="form-control" maxlength="20" autocomplete="off" name="title" id="title" required>
-											<div class="invalid-feedback">
-											Please provide a Title.
-											</div>
-										</div>
-
-										<div class="col-md-12	">
-											<label for="Description" class="form-label">Add Description<span> *</span></label>
-											<input type="text"  class="form-control" autocomplete="off" name="description" id="description" required>
-											<div class="invalid-feedback">
-											Please provide a Description.
-											</div>
-										</div>
-
-										<div class="col-md-12">
-											<label for="baby" class="form-label">Select Baby<span> *</span></label>
-											<select type="text" class="form-select form-control"  name="baby" id="baby"  required>
-											<option selected disabled value="">Select Baby</option>
-												<?php
-													$pdoQuery = "SELECT * FROM baby WHERE parentId = :parentId";
-													$pdoResult = $pdoConnect->prepare($pdoQuery);
-													$pdoResult->execute(array(":parentId" => $parentID));
-													
-														while($baby=$pdoResult->fetch(PDO::FETCH_ASSOC)){
-															?>
-															<option value="<?php echo $baby['babyId']; ?> " >
-															<?php echo "BABY - ".$baby['last_name'].", ".$baby['first_name']  ?></option>
-															<?php
-														}
-												?>
-											</select>
-											<div class="invalid-feedback">
-												Please select a Baby.
-											</div>
-										</div>
-
-										<div class="col-md-12">
-											<label for="health_center" class="form-label">Select Health Center<span> *</span></label>
-											<select class="form-select form-control"  name="health_center"  autocapitalize="on" autocomplete="off" id="health_center" required>
-											<option selected disabled value="">Select Baby</option>
-												<?php
-													$pdoQuery = "SELECT * FROM admin";
-													$pdoResult = $pdoConnect->prepare($pdoQuery);
-													$pdoResult->execute();
-													
-														while($baby=$pdoResult->fetch(PDO::FETCH_ASSOC)){
-															?>
-															<option value="<?php echo $baby['health_center_id']; ?>">
-															<?php echo $baby['health_center_name']  ?></option>
-															<?php
-														}
-												?>
-											</select>
-											<div class="invalid-feedback">
-												Please select a Health Center.
-											</div>
-										</div>
-
-										<div class="col-md-12">
-											<label for="start_datetime" class="form-label">From<span> *</span></label>
-											<input type="datetime-local"  class="form-control"  autocomplete="off" name="start_datetime" id="start_datetime" required>
-											<div class="invalid-feedback">
-											Please provide a Start Date.
-											</div>
-										</div>
-
-										<div class="col-md-12">
-											<label for="end_datetime" class="form-label">To<span> *</span></label>
-											<input type="datetime-local"  class="form-control"  autocomplete="off" name="end_datetime" id="end_datetime" required>
-											<div class="invalid-feedback">
-											Please provide a End Date.
-											</div>
-										</div>
-
-
-									</div>
-
-									<div class="addBtn">
-										<button class="button-cancel" type="reset" form="schedule-form">Cancel</button>
-										<button type="submit" class="button" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Save</button>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
 				</div>
 			</div>
 		</main>
@@ -280,7 +165,7 @@ $parentID       = $row['uniqueID'];
 			function load_data(page, query = '')
 			{
 			$.ajax({
-				url:"data-table/appointment-data-table.php?userId=<?php echo $parentID ?>",
+				url:"data-table/appointment-data-table.php?parent_Id=<?php echo $parentID ?>",
 				method:"POST",
 				data:{page:page, query:query},
 				success:function(data)

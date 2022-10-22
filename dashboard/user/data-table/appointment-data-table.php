@@ -11,7 +11,7 @@ if(!$user_home->is_logged_in())
  $user_home->redirect('../../');
 }
 
-$parentID = $_GET['userId'];
+$parentID = $_GET['parent_Id'];
 
 function get_total_row($pdoConnect)
 {
@@ -32,7 +32,7 @@ else
 }
 
 $query = "
-SELECT * FROM appointment_list WHERE user_id = :userid AND NOT status = :status
+SELECT * FROM appointment_list WHERE parent_id = :parent_id AND NOT status = :status AND NOT status = :status1
 ";
 $output = '';
 if($_POST['query'] != '')
@@ -47,11 +47,11 @@ $query .= 'ORDER BY id ASC ';
 $filter_query = $query . 'LIMIT '.$start.', '.$limit.'';
 
 $statement = $pdoConnect->prepare($query);
-$statement->execute(array(":userid" => $parentID, ":status"=>"delete"));
+$statement->execute(array(":parent_id" => $parentID, ":status"=>"delete", ":status1"=>"decline"));
 $total_data = $statement->rowCount();
 
 $statement = $pdoConnect->prepare($filter_query);
-$statement->execute(array(":userid" => $parentID, ":status"=>"delete" ));
+$statement->execute(array(":parent_id" => $parentID, ":status"=>"delete", ":status1"=>"decline" ));
 $total_filter_data = $statement->rowCount();
 
 if($total_data > 0)
@@ -97,6 +97,11 @@ $output = '
     else if ($row['status']=="resched"){
 
       $result = '<p class="btn-info N">Reschedule</p>';
+
+    }
+    else if ($row['status']=="accepted"){
+
+      $result = '<p class="btn-success N">Accepted</p>';
 
     }
 

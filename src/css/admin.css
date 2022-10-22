@@ -991,7 +991,7 @@ border-right-color: var(--main);
 	border-radius: 50%;
 }
 
-#content main .table-data .order .profile-form .profile .profile-img  .delete-appointment {
+#content main .table-data .order .profile-form .profile .profile-img  .action-btn {
 	width: 100%;
 }
 

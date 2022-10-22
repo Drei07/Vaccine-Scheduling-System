@@ -65,12 +65,6 @@ $parentID       = $row['uniqueID'];
 					<span class="text">Appointmen</span>
 				</a>
 			</li>
-			<li>
-				<a href="services">
-                    <i class='bx bxs-wrench' ></i>
-					<span class="text">Services</span>
-				</a>
-			</li>
 		</ul>
 		<ul class="side-menu">
 			<li>

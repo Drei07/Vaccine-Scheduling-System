@@ -79,12 +79,6 @@ foreach($pdoResult->fetchAll(PDO::FETCH_ASSOC) as $schedue_row){
 				</a>
 			</li>
 			<li>
-				<a href="baby">
-					<i class='bx bxs-baby-carriage'></i>
-					<span class="text">Baby</span>
-				</a>
-			</li>
-			<li>
 				<a href="appointment">
 					<i class='bx bxs-calendar-check' ></i>
 					<span class="text">Appointment</span>
@@ -192,24 +186,6 @@ foreach($pdoResult->fetchAll(PDO::FETCH_ASSOC) as $schedue_row){
 								";
 							?>
 						<p>Baby</p>
-					</span>
-				</li>
-				<li onclick="location.href='health-center'">
-					<i class='bx bxs-ambulance' ></i>
-					<span class="text">
-					<?php
-								$pdoQuery = "SELECT * FROM 	admin";
-								$pdoResult1 = $pdoConnect->prepare($pdoQuery);
-								$pdoResult1->execute();
-
-								$count = $pdoResult1->rowCount();
-
-								echo
-								"
-									<h3>$count</h3>
-								";
-							?>
-						<p>Health Center</p>
 					</span>
 				</li>
 			</ul>

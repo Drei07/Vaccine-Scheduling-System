@@ -98,6 +98,11 @@ $output = '
       $result = '<p class="btn-info N">Reschedule</p>';
 
     }
+    else if ($row['status']=="accepted"){
+
+      $result = '<p class="btn-success N">Accepted</p>';
+
+    }
 
 
     $output .= '

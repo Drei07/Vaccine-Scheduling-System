@@ -1,6 +1,6 @@
 <?php
 include_once __DIR__. '/../../../database/dbconfig2.php';
-require_once '../authentication/user-class.php';
+require_once '../authentication/admin-class.php';
 require_once __DIR__. '/../../vendor/autoload.php';
 include_once __DIR__.'/../../superadmin/controller/select-settings-coniguration-controller.php';
 
@@ -10,11 +10,11 @@ use PHPMailer\PHPMailer\SMTP;
 use PHPMailer\PHPMailer\Exception;
 
 
-$user_home = new USER();
+$admin_home = new ADMIN();
 
-if(!$user_home->is_logged_in())
+if(!$admin_home->is_logged_in())
 {
- $user_home->redirect('');
+ $admin_home->redirect('');
 }
 
 $APMTID = $_GET["APMTID"];

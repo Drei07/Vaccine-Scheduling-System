@@ -40,15 +40,27 @@ if (isset($_POST['btn-register'])){
     $services_data = $pdoResult3->fetch(PDO::FETCH_ASSOC);
 
     $type_of_services = $services_data["services"];
-    
+
+    // BABY
+
+    $pdoQuery = "SELECT * FROM baby WHERE babyid = :baby_id";
+    $pdoResult2 = $pdoConnect->prepare($pdoQuery);
+    $pdoExec = $pdoResult2->execute(array(":baby_id" => $baby_id));
+    $baby_data = $pdoResult2->fetch(PDO::FETCH_ASSOC);
+
+    $baby_firstname  = $baby_data["first_name"];
+    $baby_lastname   = $baby_data["last_name"];
+    $parent_id       = $baby_data['parentId'];
 
 
-        $pdoQuery = "INSERT INTO appointment_list (appointment_id,baby_id,health_center_id,title,service_id,description,start_datetime,end_datetime) VALUES (:appointment_id,:baby_id,:health_center_id,:title,:service_id,:description,:start_datetime,:end_datetime)";
+
+        $pdoQuery = "INSERT INTO appointment_list (appointment_id,parent_id,baby_id,health_center_id,title,service_id,description,start_datetime,end_datetime) VALUES (:appointment_id,:parent_id,:baby_id,:health_center_id,:title,:service_id,:description,:start_datetime,:end_datetime)";
         $pdoResult = $pdoConnect->prepare($pdoQuery);
         $pdoResult->execute(
             array(
                 
                 ":appointment_id"   => $appointment_id,
+                ":parent_id"        => $parent_id,
                 ":baby_id"          => $baby_id,
                 ":health_center_id" => $health_center_id,
                 ":title"            => $type_of_services,
@@ -67,16 +79,7 @@ if (isset($_POST['btn-register'])){
 
         if($pdoResult){
 
-            // BABY
 
-            $pdoQuery = "SELECT * FROM baby WHERE babyid = :baby_id";
-            $pdoResult2 = $pdoConnect->prepare($pdoQuery);
-            $pdoExec = $pdoResult2->execute(array(":baby_id" => $baby_id));
-            $baby_data = $pdoResult2->fetch(PDO::FETCH_ASSOC);
-
-            $baby_firstname  = $baby_data["first_name"];
-            $baby_lastname   = $baby_data["last_name"];
-            $parent_id       = $baby_data['parentId'];
 
 
             // PARENT
