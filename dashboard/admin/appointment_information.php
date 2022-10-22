@@ -192,7 +192,7 @@ $health_centerId	= $health_center_data["health_center_id"];
 
                                 <button class="btn-success change" onclick="overview()"><i class='bx bxs-calendar '></i> Overview</button>
                                 <button class="btn-success change" onclick="edit()"><i class='bx bxs-edit'></i> Edit</button>
-								<a href="controller/delete-appointment-controller.php?APMTID=<?php echo $APMTID ?>" class="delete-appointment action-button"><button class="btn-danger"><i class='bx bxs-trash'></i> Delete</button></a>
+								<a href="controller/delete-appointment-controller.php?APMTID=<?php echo $APMTID ?>" class="delete-appointment action-btn"><button class="btn-danger"><i class='bx bxs-trash'></i> Delete</button></a>
 
 
                             </div>
