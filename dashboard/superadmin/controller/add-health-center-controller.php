@@ -1,6 +1,12 @@
 <?php
 require_once '../../admin/authentication/admin-class.php';
 
+//URL
+$main_url = "https://infantmilestone.tech";
+
+//LOCALHOST
+// $main_url = "http://localhost/VACCINE-SCHEDULING-SYSTEM";
+
 $reg_admin = new ADMIN();
 
 if(isset($_POST['btn-register'])) {
@@ -49,7 +55,7 @@ if(isset($_POST['btn-register'])) {
             Email:<br />$email
             Password:<br />$upass
             <br /><br />
-            <a href='https://localhost/Vaccine-Scheduling-System/public/admin/verify?id=$id&code=$tokencode'>Click HERE to Verify your Account!</a>
+            <a href='$main_url/public/admin/verify?id=$id&code=$tokencode'>Click HERE to Verify your Account!</a>
             <br /><br />
             Thanks,";
             
