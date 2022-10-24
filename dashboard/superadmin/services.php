@@ -48,7 +48,7 @@ $row = $stmt->fetch(PDO::FETCH_ASSOC);
 				</a>
 			</li>
 			<li>
-				<a href="">
+				<a href="health-center">
 					<i class='bx bxs-ambulance' ></i>
 					<span class="text">Health Center Info</span>
 				</a>
