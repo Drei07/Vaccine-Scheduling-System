@@ -1,5 +1,12 @@
 <?php
 require_once 'admin-class.php';
+
+//URL
+$main_url = "https://infantmilestone.tech";
+
+//LOCALHOST
+// $main_url = "http://localhost/VACCINE-SCHEDULING-SYSTEM";
+
 $admin = new ADMIN();
 
 if($admin->is_logged_in()!="")
@@ -26,7 +33,7 @@ if(isset($_POST['btn-forgot-password']))
        <br /><br />
        Click Following Link To Reset Your Password 
        <br /><br />
-       <a href='https://localhost/RMS/dashboard/admin/authentication/admin-reset-password?id=$id&code=$code'>click here to reset your password</a>
+       <a href='$main_url/dashboard/admin/authentication/admin-reset-password?id=$id&code=$code'>click here to reset your password</a>
        <br /><br />
        thank you :)
        ";
