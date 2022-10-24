@@ -50,7 +50,7 @@ if(isset($_POST['btn-register'])) {
         $message = "     
             Hello sir/maam $last_name,
             <br /><br />
-            Welcome to San Vicente National High School Management System!
+            Welcome to Infant Milestone!
             <br /><br />
             Email:<br />$email
             Password:<br />$upass
