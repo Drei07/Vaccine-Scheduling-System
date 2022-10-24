@@ -183,7 +183,7 @@ $updated_at                          = $baby_data["updated_at"];
                             </div>
 
                             <div id="Edit" >
-                            <form action="controller/update-student-data-controller.php?id=<?php echo $student_Id ?>" method="POST" class="row gx-5 needs-validation" name="form" onsubmit="return validate()"  novalidate style="overflow: hidden;">
+                            <form action="controller/update-baby-data-controller.php?Id=<?php echo $BabyID  ?>" method="POST" class="row gx-5 needs-validation" name="form" onsubmit="return validate()"  novalidate style="overflow: hidden;">
                             <div class="row gx-5 needs-validation">
                                     <!-- Baby Information -->
 
@@ -377,7 +377,7 @@ $updated_at                          = $baby_data["updated_at"];
 
                                 <div class="addBtn">
                                     <button type="button" onclick="location.href='baby'" class="back">Back</button>
-                                    <button disabled type="submit" class="primary" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Update</button>
+                                    <button type="submit" class="primary" name="btn-update" id="btn-update" onclick="return IsEmpty(); sexEmpty();">Update</button>
                                 </div>
                             </form>
                             </div>

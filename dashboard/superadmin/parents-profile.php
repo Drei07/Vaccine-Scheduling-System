@@ -178,9 +178,6 @@ $updated_at             =        $parent["updated_at"];
                                 <img src="../../src/img/<?php echo $profile_user ?>" alt="logo">
 
                                 <a href="controller/delete-profile-controller.php?userId=<?php echo $UId ?>" class="delete"><i class='bx bxs-trash'></i></a>
-                                <button class="btn-success change" onclick="edit()"><i class='bx bxs-edit'></i> Edit Profile</button>
-                                <button class="btn-success change" onclick="avatar()"><i class='bx bxs-user'></i> Change Avatar</button>
-                                <button class="btn-success change" onclick="password()"><i class='bx bxs-key'></i> Change Password</button>
 
                             </div>
                             
@@ -343,8 +340,7 @@ $updated_at             =        $parent["updated_at"];
 								</div>
 
 								<div class="addBtn">
-									<button type="button" onclick="location.href='enrolled-students-data'" class="back">Back</button>
-									<button disabled type="submit" class="primary" name="btn-register" id="btn-register" onclick="return IsEmpty(); sexEmpty();">Submit</button>
+									<button type="button" onclick="location.href='parents'" class="back">Back</button>
 								</div>
 							</form>
                             </div>

@@ -62,7 +62,6 @@ $output = '
     <th>HEALTH CENTER NAME</th>
     <th>EMAIL</th>
     <th>STATUS</th>
-    <th>MORE</th>
     </thead>
 ';
   while($row=$statement->fetch(PDO::FETCH_ASSOC))
@@ -73,8 +72,6 @@ $output = '
       <td>'.$row["health_center_name"].'</td>
       <td>'.$row["adminEmail"].'</td>
       <td>'. ($row['adminStatus']=="N" ? '<p class="btn-warning N">Pending</p>' :  '<p class="btn-success Y">Active</p>') . '</td>
-      <td><button type="button" class="btn btn-primary V"> <a href="health-center-profile?health_center_id='.$row["health_center_id"].'" class="view"><i class="bx bx-low-vision"></i></a></button></td>
-
     </tr>
     ';
   }
@@ -227,6 +224,9 @@ $('.view').on('click', function(e){
         }
       });
 })
+
+// <td><button type="button" class="btn btn-primary V"> <a href="health-center-profile?health_center_id='.$row["health_center_id"].'" class="view"><i class="bx bx-low-vision"></i></a></button></td>
+
 
 </script>
 </table>
