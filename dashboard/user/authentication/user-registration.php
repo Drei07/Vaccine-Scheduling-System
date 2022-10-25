@@ -1,6 +1,12 @@
 <?php
 require_once 'user-class.php';
 
+//URL
+$main_url = "https://infantmilestone.tech";
+
+//LOCALHOST
+// $main_url = "http://localhost/VACCINE-SCHEDULING-SYSTEM";
+
 $reg_user = new USER();
 
 
@@ -57,12 +63,12 @@ if(isset($_POST['btn-register'])) {
         $message = "     
             Hello sir/maam $last_name,
             <br /><br />
-            Welcome to Vaccine System!
+            Welcome to Infant Milestone !
             <br /><br />
             Email:<br />$email
             Password:<br />$upass
             <br /><br />
-            <a href='https://localhost/Vaccine-Scheduling-System/public/user/verify?id=$id&code=$tokencode'>Click HERE to Verify your Account!</a>
+            <a href='$main_url/public/user/verify?id=$id&code=$tokencode'>Click HERE to Verify your Account!</a>
             <br /><br />
             Thanks,";
             
