@@ -170,7 +170,7 @@ foreach($pdoResult->fetchAll(PDO::FETCH_ASSOC) as $schedue_row){
 						<p>Appointment</p>
 					</span>
 				</li>
-				<li onclick="location.href=''">
+				<li onclick="location.href='baby'">
 					<i class='bx bxs-baby-carriage'></i>
 					<span class="text">
 					<?php
