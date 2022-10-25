@@ -19,7 +19,7 @@ include_once '../../dashboard/superadmin/controller/select-settings-coniguration
 	<link rel="stylesheet" type="text/css" href="../../src/css/util.css?v=<?php echo time(); ?>">
 	<link rel="stylesheet" type="text/css" href="../../src/css/main.css?v=<?php echo time(); ?>">
 	<script src="https://www.google.com/recaptcha/api.js?render=<?php echo $SiteKEY ?>"></script>
-    <title>Superadmin | Sign In</title>
+    <title>Super-admin | Sign In</title>
 
 </head>
 <body>
@@ -33,7 +33,7 @@ include_once '../../dashboard/superadmin/controller/select-settings-coniguration
 
 				<form action="../../dashboard/superadmin/authentication/superadmin-signin.php" method="POST" class="login100-form validate-form" novalidate="">
 					<span class="login100-form-title">
-						Superadmin Signin
+						Super-admin Signin
 					</span>
 					<input type="hidden" id="g-token" name="g-token">
 
