@@ -186,7 +186,6 @@ $updated_at                          = $baby_data["updated_at"];
                                 <img src="../../src/img/<?php echo $baby_profile ?>" alt="logo">
                                 <h5><?php echo $baby_LName?>, <?php echo $baby_FName?> <?php echo $baby_MName?></h5>
                                 <p><?php echo $BabyID ?></p>
-                                <button class="delete2"><a href="controller/delete-baby-controller.php?Id=<?php echo $BabyID ?>" class="delete-baby">Delete Account</a></button>
                                 <button class="btn-success change" ><i class='bx bxs-calendar-week'></i></i> Appointment</button>
 
                             </div>
